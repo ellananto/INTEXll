@@ -1,4 +1,5 @@
 ﻿using INTEXll.Models;
+using INTEXll.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,11 +12,10 @@ namespace INTEXll.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private IBurialRepository repo;
+        public HomeController(IBurialRepository temp)
         {
-            _logger = logger;
+            repo = temp;
         }
 
         public IActionResult Index()
@@ -28,9 +28,25 @@ namespace INTEXll.Controllers
             return View();
         }
 
-        public IActionResult Burials()
+        public IActionResult Burials(int pageNum = 1)
         {
-            return View();
+            int pageSize = 100;
+
+            var x = new BurialsViewModel
+            {
+                Burials = repo.Burials
+                .OrderBy(p => p.Burialid)
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize),
+
+                PageInfo = new PageInfo
+                {
+                    TotalNumBurials = repo.Burials.Count(),
+                    BurialsPerPage = pageSize,
+                    CurrentPage = pageNum
+                }
+            };
+            return View(x);
         }
 
         public IActionResult Supervised()

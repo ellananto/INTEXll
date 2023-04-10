@@ -1,4 +1,5 @@
 using INTEXll.Data;
+using INTEXll.Models;
 using Microsoft.AspNetCore.Authentication.Certificate;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -13,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace INTEXll
@@ -32,6 +34,9 @@ namespace INTEXll
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<burialContext>(options =>
+                options.UseNpgsql(Configuration.GetConnectionString("Database1Connection")));
+            services.AddScoped<IBurialRepository, EFBurialRepository>();
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
@@ -89,6 +94,11 @@ namespace INTEXll
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(
+                name: "Paging",
+                pattern: "Page{pageNum}",
+                defaults: new { Controller = "Home", action = "Burials" }
+            );
                 endpoints.MapRazorPages();
             });
         }
