@@ -28,6 +28,21 @@ namespace INTEXll.Controllers
             return View();
         }
 
+        public IActionResult Burials()
+        {
+            return View();
+        }
+
+        public IActionResult Supervised()
+        {
+            return View();
+        }
+
+        public IActionResult Unsupervised()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
