@@ -1,4 +1,5 @@
 using INTEXll.Data;
+using Microsoft.AspNetCore.Authentication.Certificate;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -51,7 +52,14 @@ namespace INTEXll
                 options.Password.RequiredLength = 8;
                 options.Password.RequiredUniqueChars = 3;
             });
-
+            services.AddHsts(options =>
+            {
+                options.Preload = true;
+                options.IncludeSubDomains = true;
+                options.MaxAge = TimeSpan.FromDays(60);
+                options.ExcludedHosts.Add("example.com");
+                options.ExcludedHosts.Add("www.example.com");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
