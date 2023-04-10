@@ -28,20 +28,20 @@ namespace INTEXll.Controllers
             return View();
         }
 
-        public IActionResult Burials(int pageNum = 1)
+        public IActionResult Burials(string area, int pageNum = 1)
         {
             int pageSize = 100;
 
             var x = new BurialsViewModel
             {
                 Burials = repo.Burials
-                .OrderBy(p => p.Burialid)
+                .Where(p => p.Area == area || area == null)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
 
                 PageInfo = new PageInfo
                 {
-                    TotalNumBurials = repo.Burials.Count(),
+                    TotalNumBurials = (area == null ? repo.Burials.Count() : repo.Burials.Where(x => x.Area == area).Count()),
                     BurialsPerPage = pageSize,
                     CurrentPage = pageNum
                 }

@@ -1,8 +1,27 @@
 ﻿@model BurialsViewModel
 
-<h1>Burial Records</h1>
+<body>
+    <div class="bg-dark text-white p-2">
+        <span class="navbar-brand m-lg-2">Burial Records</span>
+    </div>
 
-@foreach (Burialmain b in Model.Burials)
-{
-    <partial name="BurialSummary" model="b" />
-}
+    <div class="row m-1 p-1">
+
+        <div id="types" class="col-3">
+            <div id="types" class="col-3">
+                <vc:types-view-components></vc:types-view-components>
+            </div>
+        </div>
+
+        <div class="col-9">
+            <div>
+                @foreach (Burialmain b in Model.Burials)
+                {
+                    <partial name="BurialSummary" model="b" />
+                }
+            </div>
+        </div>
+    </div>
+
+    <div page-model="" page-blah="@Model.PageInfo" page-action="Burials" page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-class-enabled="true" class="btn-group pull-right m-1"></div>
+</body>

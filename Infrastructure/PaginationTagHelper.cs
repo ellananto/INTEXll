@@ -27,6 +27,10 @@ namespace INTEXll.Infrastructure
         // page Blah and page Action refers to the stuff in the step above 
         public PageInfo PageBlah { get; set; }
         public string PageAction { get; set; }
+        public string PageClass { get; set; }
+        public bool PageClassEnabled { get; set; }
+        public string PageClassNormal { get; set; }
+        public string PageClassSelected { get; set; }
         public override void Process(TagHelperContext thc, TagHelperOutput tho)
         {
             IUrlHelper uh = uhf.GetUrlHelper(vc);
@@ -41,6 +45,15 @@ namespace INTEXll.Infrastructure
                 TagBuilder tb = new TagBuilder("a");
                 // give that a tag an href from the action and page number we're on
                 tb.Attributes["href"] = uh.Action(PageAction, new { pageNum = i });
+
+                // NEW IF STATEMENT STUFF
+                if (PageClassEnabled)
+                {
+                    // add the bootrap passed in
+                    tb.AddCssClass(PageClass);
+                    tb.AddCssClass(i == PageBlah.CurrentPage ? PageClassSelected : PageClassNormal);
+                }
+
                 // append that as string for the tag's inner HTML
                 tb.InnerHtml.Append(i.ToString());
 
