@@ -1,5 +1,26 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+}
+@model INTEXll.Controllers.HomeController.SupervisedData
+
+<h1>Predict Wrapping of Burial</h1>
+
+<p>Enter a value to make a prediction:</p>
+
+<form method="post">
+    <div class="form-group">
+        <label for="input">Input Depth:</label>
+        <input type="text" class="form-control" name="input" />
+        <label for="input">Input Depth:</label>
+        <input type="text" class="form-control" name="input" />
+        <label for="input">Input Depth:</label>
+        <input type="text" class="form-control" name="input" />
+        <label for="input">Input Depth:</label>
+        <input type="text" class="form-control" name="input" />
+    </div>
+    <button type="submit" class="btn btn-primary">Make Prediction</button>
+</form>
+
+@if (ViewData["output"] != null)
+{
+    <p>Prediction: @ViewData["output"]</p>
 }
