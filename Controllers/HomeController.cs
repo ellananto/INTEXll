@@ -14,11 +14,12 @@ namespace INTEXll.Controllers
 {
     public class HomeController : Controller
     {
-        private IBurialRepository repo;
+        private burialContext context {get;set;}
         private ApplicationDbContext identityContext { get; set; }
-        public HomeController(IBurialRepository temp, ApplicationDbContext identity)
+        public HomeController(burialContext temp, ApplicationDbContext identity)
         {
-            repo = temp;
+            context
+                = temp;
             identityContext = identity;
         }
 
@@ -38,14 +39,14 @@ namespace INTEXll.Controllers
 
             var x = new BurialsViewModel
             {
-                Burials = repo.Burials
+                Burials = context.Burialmain
                 .Where(p => p.Area == area || area == null)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
 
                 PageInfo = new PageInfo
                 {
-                    TotalNumBurials = (area == null ? repo.Burials.Count() : repo.Burials.Where(x => x.Area == area).Count()),
+                    TotalNumBurials = (area == null ? context.Burialmain.Count() : context.Burialmain.Where(x => x.Area == area).Count()),
                     BurialsPerPage = pageSize,
                     CurrentPage = pageNum
                 }
@@ -55,7 +56,7 @@ namespace INTEXll.Controllers
         [HttpGet]
         public IActionResult MoreInfo(long ellaid)
         {
-            var info = repo.Burials.FirstOrDefault(x => x.Id == ellaid);
+            var info = context.Burialmain.FirstOrDefault(x => x.Id == ellaid);
             return View(info);
         }
 
@@ -71,13 +72,13 @@ namespace INTEXll.Controllers
 
             var x = new BurialsViewModel
             {
-                Burials = repo.Burials
+                Burials = context.Burialmain
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
 
                 PageInfo = new PageInfo
                 {
-                    TotalNumBurials = repo.Burials.Count(),
+                    TotalNumBurials = context.Burialmain.Count(),
                     BurialsPerPage = pageSize,
                     CurrentPage = pageNum
                 }
@@ -90,14 +91,35 @@ namespace INTEXll.Controllers
             return View(userInfo);
         }
 
-        //public IActionResult EditRecordForm(long recordid)
-        //{
-        //    var x = new BurialsViewModel
-        //    {
-        //        Burials = repo.Burials
-        //       .Where(x => x.Id == recordid),
-        //    };
-        //    return View(x);
-        //}
+        public IActionResult EditRecordForm(long recordid)
+        {
+            ViewBag.Burialmain = context.Burialmain.ToList();
+            // variable with sql statement to get the right record with passed applicationid 
+            var app = context.Burialmain.Single(x => x.Id == recordid);
+            // the ", application" is what will fill the form with values
+            return View(app);
+        }
+        [HttpPost]
+        public IActionResult EditRecordForm(Burialmain burialmain)
+        {
+            context.Update(burialmain);
+            context.SaveChanges();
+            return RedirectToAction("BurialsAdmin");
+        }
+
+        [HttpGet]
+        public IActionResult DeleteRecordForm(long deleteid)
+        {
+            var app = context.Burialmain.Single(x => x.Id == deleteid);
+            return View(app);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteRecordForm(Burialmain burialmain)
+        {
+            context.Burialmain.Remove(burialmain);
+            context.SaveChanges();
+            return RedirectToAction("Burials");
+        }
     }
 }
