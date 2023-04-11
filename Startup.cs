@@ -36,7 +36,6 @@ namespace INTEXll
                     Configuration.GetConnectionString("Database1Connection")));
             services.AddDbContext<burialContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("Database1Connection")));
-            services.AddScoped<IBurialRepository, EFBurialRepository>();
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
