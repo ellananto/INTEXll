@@ -91,10 +91,9 @@ namespace INTEXll
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute("areapage", "{Area}/P{pageNum}", new { Controller = "Home", action = "Burials" });
-                endpoints.MapControllerRoute("Paging", "P{pageNum}", new { Controller = "Home", action = "Burials" });
-                endpoints.MapControllerRoute("area", "{Area}", new { Controller = "Home", action = "Burials", pageNum = 1 });
-                endpoints.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute("typepage", "{area}/P{pageNum}", new { Controller = "Home", action = "Burial" });
+                endpoints.MapControllerRoute("Paging", "Page{pageNum}", new { controller = "Home", action = "Burials" });
+                endpoints.MapControllerRoute("type", "{area}", new { Controller = "Home", action = "Burials", pageNum = 1 });
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapRazorPages();
             });

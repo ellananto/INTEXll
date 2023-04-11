@@ -16,7 +16,7 @@ namespace INTEXll.Components
 		}
 		public IViewComponentResult Invoke()
 		{
-			ViewBag.SelectedType = RouteData?.Values["Area"];
+			ViewBag.SelectedType = RouteData?.Values["area"];
 			var types = repo.Burials
 				.Select(x => x.Area)
 				.Distinct()
