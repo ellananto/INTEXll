@@ -65,9 +65,24 @@ namespace INTEXll.Controllers
         }
 
         [Authorize]
-        public IActionResult BurialsAdmin()
+        public IActionResult BurialsAdmin(int pageNum = 1)
         {
-            return View();
+            int pageSize = 100;
+
+            var x = new BurialsViewModel
+            {
+                Burials = repo.Burials
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize),
+
+                PageInfo = new PageInfo
+                {
+                    TotalNumBurials = repo.Burials.Count(),
+                    BurialsPerPage = pageSize,
+                    CurrentPage = pageNum
+                }
+            };
+            return View(x);
         }
         public IActionResult Users()
         {
@@ -75,10 +90,14 @@ namespace INTEXll.Controllers
             return View(userInfo);
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        //public IActionResult EditRecordForm(long recordid)
+        //{
+        //    var x = new BurialsViewModel
+        //    {
+        //        Burials = repo.Burials
+        //       .Where(x => x.Id == recordid),
+        //    };
+        //    return View(x);
+        //}
     }
 }

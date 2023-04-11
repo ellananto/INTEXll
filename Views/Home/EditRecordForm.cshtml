@@ -1,0 +1,112 @@
+﻿@*@model BurialsViewModel*@
+
+
+@*<form method="post">
+    <label>From: </label>
+    <input id="txtFrom" asp-for="" /><br />
+    <label>Subject: </label>
+    <input id="txtSubject" asp-for="Subject" /><br />
+    <label>Message: </label>
+    <textarea id="txtMessage" rows="4" asp-for="Message"></textarea><br />
+    <input id="btnSend" type="submit" value="Send Message" />
+</form>
+
+@model BurialsViewModel
+
+<body>
+    <div class="bg-dark text-white p-2">
+        <span class="navbar-brand m-lg-2">Admin View of Burial Records</span>
+    </div>
+    <p>The data displayed below are records of various categories of information gathered about a collection of burials that have been uncovered. As you look through the data, you can filter in various ways to look for patterns, and click on each record for more information!</p>
+    <div class="row m-1 p-1">
+        <div class="col-9">
+            <div>
+                @foreach (Burialmain b in Model.Burials)
+                {
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Burial ID</th>
+                                <th>Square North/South</th>
+                                <th>Head Direction</th>
+                                <th>Sex</th>
+                                <th>North/South</th>
+                                <th>Depth</th>
+                                <th>East/West</th>
+                                <th>Adult/Sub Adult</th>
+                                <th>Face Bundles</th>
+                                <th>South To Head</th>
+                                <th>Preservation Status</th>
+                                <th>Fieldbook Page</th>
+                                <th>Square East/West</th>
+                                <th>Goods</th>
+                                <th>Text</th>
+                                <th>Wrapping</th>
+                                <th>Hair Color</th>
+                                <th>West to Head</th>
+                                <th>Samples Collected</th>
+                                <th>Area</th>
+                                <th>Burial ID</th>
+                                <th>Length</th>
+                                <th>Burial Number</th>
+                                <th>Data Expert Initials</th>
+                                <th>West to Feet</th>
+                                <th>Age at Death</th>
+                                <th>South to Feet</th>
+                                <th>Excavation Recorder</th>
+                                <th>Photos</th>
+                                <th>Hair</th>
+                                <th>Burial Materials</th>
+                                <th>Date of Excavation</th>
+                                <th>Fieldbook Excavation Year</th>
+                                <th>Cluster Number</th>
+                                <th>Shaft Number</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@b.Id</td>
+                                <td>@b.Squarenorthsouth</td>
+                                <td>@b.Headdirection</td>
+                                <td>@b.Sex</td>
+                                <td>@b.Northsouth</td>
+                                <td>@b.Depth</td>
+                                <td>@b.Eastwest</td>
+                                <td>@b.Adultsubadult</td>
+                                <td>@b.Facebundles</td>
+                                <td>@b.Southtohead</td>
+                                <td>@b.Preservation</td>
+                                <td>@b.Fieldbookpage</td>
+                                <td>@b.Squareeastwest</td>
+                                <td>@b.Goods</td>
+                                <td>@b.Text</td>
+                                <td>@b.Wrapping</td>
+                                <td>@b.Haircolor</td>
+                                <td>@b.Westtohead</td>
+                                <td>@b.Samplescollected</td>
+                                <td>@b.Area</td>
+                                <td>@b.Burialid</td>
+                                <td>@b.Length</td>
+                                <td>@b.Burialnumber</td>
+                                <td>@b.Dataexpertinitials</td>
+                                <td>@b.Westtofeet</td>
+                                <td>@b.Ageatdeath</td>
+                                <td>@b.Southtofeet</td>
+                                <td>@b.Excavationrecorder</td>
+                                <td>@b.Photos</td>
+                                <td>@b.Hair</td>
+                                <td>@b.Burialmaterials</td>
+                                <td>@b.Dateofexcavation</td>
+                                <td>@b.Fieldbookexcavationyear</td>
+                                <td>@b.Clusternumber</td>
+                                <td>@b.Shaftnumber</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div page-model="" page-blah="@Model.PageInfo" page-action="Burials" page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-class-enabled="true" class="btn-group pull-right m-1"></div>
+</body>*@

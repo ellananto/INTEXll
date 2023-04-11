@@ -93,7 +93,7 @@ namespace INTEXll
             {
                 //endpoints.MapControllerRoute("id", "{controller}/{action}/{id?}", new { Controller = "Home", action = "MoreInfo" });
                 endpoints.MapControllerRoute("typepage", "{area}/P{pageNum}", new { Controller = "Home", action = "Burial" });
-                endpoints.MapControllerRoute("ellaid", "{ellaid}", new { Controller = "Home", action = "MoreInfo" });
+                endpoints.MapControllerRoute("ellaid", "{action}/{ellaid}", new { Controller = "Home", action = "MoreInfo" });
                 endpoints.MapControllerRoute("Paging", "Page{pageNum}", new { controller = "Home", action = "Burials" });
                 endpoints.MapControllerRoute("type", "{area}", new { Controller = "Home", action = "Burials", pageNum = 1 });
                 endpoints.MapDefaultControllerRoute();

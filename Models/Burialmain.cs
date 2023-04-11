@@ -10,8 +10,8 @@ namespace INTEXll.Models
 {
     public partial class Burialmain
     {
-        [Required]
         [Key]
+        [Required]
         public long Id { get; set; }
         public string Squarenorthsouth { get; set; }
         public string Headdirection { get; set; }
