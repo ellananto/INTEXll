@@ -32,8 +32,8 @@ namespace INTEXll
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                options.UseNpgsql(
+                    Configuration.GetConnectionString("Database1Connection")));
             services.AddDbContext<burialContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("Database1Connection")));
             services.AddScoped<IBurialRepository, EFBurialRepository>();
