@@ -4,7 +4,7 @@
     <div class="bg-dark text-white p-2">
         <span class="navbar-brand m-lg-2">Burial Records</span>
     </div>
-
+    <p>The data displayed below are records of various categories of information gathered about a collection of burials that have been uncovered. As you look through the data, you can filter in various ways to look for patterns, and click on each record for more information!</p>
     <div class="row m-1 p-1">
 
         <div id="types" class="col-3">
@@ -12,12 +12,33 @@
                 <vc:types-view-components></vc:types-view-components>
             </div>
         </div>
-
         <div class="col-9">
             <div>
                 @foreach (Burialmain b in Model.Burials)
                 {
-                    <partial name="BurialSummary" model="b" />
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Burial ID</th>
+                                <th>Depth</th>
+                                <th>Preservation</th>
+                                <th>Burial Number</th>
+                                <th>Excavation Year</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@b.Id</td>
+                                <td>@b.Depth</td>
+                                <td>@b.Preservation</td>
+                                <td>@b.Burialnumber</td>
+                                <td>@b.Fieldbookexcavationyear</td>
+                                <td>
+                                    <a class="btn btn-primary" asp-controller="Home" asp-action="MoreInfo" asp-route-ellaid="1914029871">See More</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 }
             </div>
         </div>

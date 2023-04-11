@@ -1,5 +1,6 @@
 ﻿using INTEXll.Models;
 using INTEXll.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -48,13 +49,20 @@ namespace INTEXll.Controllers
             };
             return View(x);
         }
+        [HttpGet]
+        public IActionResult MoreInfo(int ellaid)
+        {
+            Debug.WriteLine(ellaid);
+            return View();
+        }
 
         public IActionResult Supervised()
         {
             return View();
         }
 
-        public IActionResult Unsupervised()
+        [Authorize]
+        public IActionResult BurialsAdmin()
         {
             return View();
         }
