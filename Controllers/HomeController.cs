@@ -8,15 +8,18 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using INTEXll.Data;
 
 namespace INTEXll.Controllers
 {
     public class HomeController : Controller
     {
         private IBurialRepository repo;
-        public HomeController(IBurialRepository temp)
+        private ApplicationDbContext identityContext { get; set; }
+        public HomeController(IBurialRepository temp, ApplicationDbContext identity)
         {
             repo = temp;
+            identityContext = identity;
         }
 
         public IActionResult Index()
@@ -50,10 +53,10 @@ namespace INTEXll.Controllers
             return View(x);
         }
         [HttpGet]
-        public IActionResult MoreInfo(int ellaid)
+        public IActionResult MoreInfo(long ellaid)
         {
-            Debug.WriteLine(ellaid);
-            return View();
+            var info = repo.Burials.FirstOrDefault(x => x.Id == ellaid);
+            return View(info);
         }
 
         public IActionResult Supervised()
@@ -65,6 +68,11 @@ namespace INTEXll.Controllers
         public IActionResult BurialsAdmin()
         {
             return View();
+        }
+        public IActionResult Users()
+        {
+            var userInfo = identityContext.Users.OrderBy(x => x.Id).ToList();
+            return View(userInfo);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
