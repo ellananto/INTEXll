@@ -19,7 +19,7 @@ namespace INTEXll.Controllers
 {
     public class HomeController : Controller
     {
-        private burialContext context {get;set;}
+        private burialContext context { get; set; }
         private ApplicationDbContext identityContext { get; set; }
         public HomeController(burialContext temp, ApplicationDbContext identity)
         {
@@ -51,16 +51,16 @@ namespace INTEXll.Controllers
                 Textiles = context.Textile
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
-                Bodyanalysischarts= context.Bodyanalysischart
+                Bodyanalysischarts = context.Bodyanalysischart
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
                 Structure = context.Structure
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
-               TextileColors= context.Color
+                TextileColors = context.Color
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
-                TextileFunctions= context.Textilefunction
+                TextileFunctions = context.Textilefunction
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
 
@@ -240,7 +240,8 @@ namespace INTEXll.Controllers
             [ColumnName("output")]
             public float Prediction { get; set; }
 
-
+        }
+        [HttpGet]
         public IActionResult EditRecordForm(long recordid)
         {
             ViewBag.Burialmain = context.Burialmain.ToList();
@@ -288,14 +289,7 @@ namespace INTEXll.Controllers
             // the ", application" is what will fill the form with values
             return View();
         }
-        //[HttpPost]
-        //public IActionResult EditRecordForm(Burialmain burialmain)
-        //{
-        //    context.Update(burialmain);
-        //    context.SaveChanges();
-        //    return RedirectToAction("BurialsAdmin");
-        //}
-        public IActionResult Unsupervised()
+    public IActionResult Unsupervised()
         {
             return View();
         }
