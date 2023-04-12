@@ -1,0 +1,76 @@
+﻿@model Burialmain
+
+<h1>Add a Record Below</h1>
+
+<form method="post" asp-action="AddRecord">
+    <label>ID: </label>
+    <input id="Id" asp-for="Id" /><br />
+    <label>Square North/South: </label>
+    <input id="Squarenorthsouth" asp-for="Squarenorthsouth" /><br />
+    <label>Head Direction: </label>
+    <input id="Headdirection" asp-for="Headdirection" /><br />
+    <label>Sex: </label>
+    <input id="Sex" asp-for="Sex" /><br />
+    <label>North/South: </label>
+    <input id="Northsouth" asp-for="Northsouth" /><br />
+    <label>Depth: </label>
+    <input id="Depth" asp-for="Depth" /><br />
+    <label>East/West: </label>
+    <input id="Eastwest" asp-for="Eastwest" /><br />
+    <label>Adult/Sub Adult: </label>
+    <input id="Adultsubadult" asp-for="Adultsubadult" /><br />
+    <label>Face Bundles: </label>
+    <input id="Facebundles" asp-for="Facebundles" /><br />
+    <label>South to Head: </label>
+    <input id="Southtohead" asp-for="Southtohead" /><br />
+    <label>Preservation: </label>
+    <input id="Preservation" asp-for="Preservation" /><br />
+    <label>Square East/West: </label>
+    <input id="Squareeastwest" asp-for="Squareeastwest" /><br />
+    <label>Goods: </label>
+    <input id="Goods" asp-for="Goods" /><br />
+    <label>Wrapping: </label>
+    <input id="Wrapping" asp-for="Wrapping" /><br />
+    <label>Hair Color: </label>
+    <input id="Haircolor" asp-for="Haircolor" /><br />
+    <label>West to Head: </label>
+    <input id="Westtohead" asp-for="Westtohead" /><br />
+    <label>Samples Collected: </label>
+    <input id="Samplescollected" asp-for="Samplescollected" /><br />
+    <label>Area: </label>
+    <input id="Area" asp-for="Area"  /><br />
+    <label>Burial ID: </label>
+    <input id="BurialId" asp-for="Burialid"  /><br />
+    <label>Length: </label>
+    <input id="Length" asp-for="Length" /><br />
+    <label>Burial Number: </label>
+    <input id="BurialNumber" asp-for="Burialnumber" /><br />
+    <label>Data Expert Initials: </label>
+    <input id="Dataexpertinitials" asp-for="Dataexpertinitials"  /><br />
+    <label>West to Feet: </label>
+    <input id="Westtofeet" asp-for="Westtofeet" /><br />
+    <label>Age at Death: </label>
+    <input id="Ageatdeath" asp-for="Ageatdeath" /><br />
+    <label>South to Feet: </label>
+    <input id="Southtofeet" asp-for="Southtofeet" /><br />
+    <label>Excavation Recorder: </label>
+    <input id="Excavationrecorder" asp-for="Excavationrecorder" /><br />
+    <label>Photos: </label>
+    <input id="Photos" asp-for="Photos" /><br />
+    <label>Hair: </label>
+    <input id="Hair" asp-for="Hair" /><br />
+    <label>Burial Materials: </label>
+    <input id="Burialmaterials" asp-for="Burialmaterials"  /><br />
+    <label>Date of Excavation: </label>
+    <input id="Dateofexcavation" asp-for="Dateofexcavation" /><br />
+    <label>Fieldbook Excavation Year: </label>
+    <input id="fieldbookexcavationyear" asp-for="Fieldbookexcavationyear" /><br />
+    <label>Cluster Number: </label>
+    <input id="Clusternumber" asp-for="Clusternumber" /><br />
+    <label>Shaft Number: </label>
+    <input id="Shaftnumber" asp-for="Shaftnumber" /><br />
+    <label>Text: </label>
+    <textarea id="Text" rows="4" asp-for="Text"></textarea><br /><br />
+    <input class="btn btn-primary" id="btnSend" type="submit" value="Submit Changes" />
+</form>
+

@@ -1,14 +1,29 @@
 ﻿@model Burialmain
-    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="seeMore-@Model.Id" tabindex="-1" aria-labelledby="seeMore" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Burial Details</h5>
+                    <h5 class="modal-title" id="seeMore">Burial Details</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="modalContent">
                     <!-- Modal content will be loaded dynamically here -->
-                    TEST TEXT!!!
+                    <h2>More Information!</h2>
+                    <p>Record ID: @Model.Id</p>
+                    <p>Extra Text: @Model.Text</p>
+                    <p>Area: @Model.Area</p>
+                    <p>Sex: @Model.Sex</p>
+                    <p>Age at Death: @Model.Ageatdeath</p>
+                    <p>North/South Square: @Model.Squarenorthsouth</p>
+                    <p>North/South Location: @Model.Northsouth</p>
+                    <p>East/West Square: @Model.Squareeastwest</p>
+                    <p>East/West Location: @Model.Eastwest</p>
+                    <p>Samples Collected: @Model.Samplescollected</p>
+                    <p>Length: @Model.Length</p>
+                    <p>Hair Color: @Model.Haircolor</p>
+                    <p>Burial Number: @Model.Burialnumber</p>
+                    <p>Head Direction: @Model.Headdirection</p>
+                    <p>Preservation State: @Model.Preservation</p>
                 </div>
             </div>
         </div>

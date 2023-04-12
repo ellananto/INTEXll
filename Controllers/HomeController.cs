@@ -18,8 +18,7 @@ namespace INTEXll.Controllers
         private ApplicationDbContext identityContext { get; set; }
         public HomeController(burialContext temp, ApplicationDbContext identity)
         {
-            context
-                = temp;
+            context = temp;
             identityContext = identity;
         }
 
@@ -32,15 +31,31 @@ namespace INTEXll.Controllers
         {
             return View();
         }
+        [HttpGet]
 
-        public IActionResult Burials(string area, int pageNum = 1)
+        public IActionResult Burials(string area, string filter, int pageNum = 1)
         {
             int pageSize = 100;
-
+            ViewBag.SelectedType = area;
+            ViewBag.SelectedFilter = filter;
             var x = new BurialsViewModel
             {
                 Burials = context.Burialmain
-                .Where(p => p.Area == area || area == null)
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize),
+                Textiles = context.Textile
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize),
+                Bodyanalysischarts= context.Bodyanalysischart
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize),
+                Structure = context.Structure
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize),
+               TextileColors= context.Color
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize),
+                TextileFunctions= context.Textilefunction
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
 
@@ -53,13 +68,48 @@ namespace INTEXll.Controllers
             };
             return View(x);
         }
-        [HttpGet]
-        public IActionResult MoreInfo(long ellaid)
-        {
-            var info = context.Burialmain.FirstOrDefault(x => x.Id == ellaid);
-            return View(info);
-        }
 
+        [HttpPost]
+        public IActionResult Burials(TFForm tf, BFiltersForm bf, TSForm ts, TextileForm t, TCForm tc, BAC bac, string table, int pageNum = 1)
+        {
+            ViewBag.SelectedType = table;
+            int pageSize = 100;
+            var Burialquery = context.Burialmain.AsQueryable();
+
+            if (!string.IsNullOrEmpty(bf.SquareNS)) { Burialquery = Burialquery.Where(x => x.Squarenorthsouth == bf.SquareNS); }
+
+            if (!string.IsNullOrEmpty(bf.NS)) { Burialquery = Burialquery.Where(x => x.Northsouth == bf.NS); }
+
+            if (!string.IsNullOrEmpty(bf.SquareEW)) { Burialquery = Burialquery.Where(x => x.Squareeastwest == bf.SquareEW); }
+
+            if (!string.IsNullOrEmpty(bf.EW)) { Burialquery = Burialquery.Where(x => x.Eastwest == bf.EW); }
+
+            if (!string.IsNullOrEmpty(bf.Area)) { Burialquery = Burialquery.Where(x => x.Area == bf.Area); }
+
+            if (bf.BurialNumber.HasValue) { Burialquery = Burialquery.Where(x => x.Burialnumber == bf.BurialNumber.Value.ToString()); }
+
+            if (!string.IsNullOrEmpty(bf.HeadDirection)) { Burialquery = Burialquery.Where(x => x.Headdirection == bf.HeadDirection); }
+
+            if (!string.IsNullOrEmpty(bf.AgeAtDeath)) { Burialquery = Burialquery.Where(x => x.Ageatdeath == bf.AgeAtDeath); }
+
+            if (!string.IsNullOrEmpty(bf.Sex)) { Burialquery = Burialquery.Where(x => x.Sex == bf.Sex); }
+
+            if (!string.IsNullOrEmpty(bf.HairColor)) { Burialquery = Burialquery.Where(x => x.Haircolor == bf.HairColor); }
+
+
+            var viewModel = new BurialsViewModel
+            {
+                Burials = Burialquery.OrderBy(x => x.Id),
+                PageInfo = new PageInfo
+                {
+                    TotalNumBurials = context.Burialmain.Count() == null ? 0 : context.Burialmain.Count(),
+                    BurialsPerPage = pageSize,
+                    CurrentPage = pageNum
+                }
+            };
+
+            return View("Burials", viewModel);
+        }
         public IActionResult Supervised()
         {
             return View();
@@ -91,6 +141,7 @@ namespace INTEXll.Controllers
             return View(userInfo);
         }
 
+
         public IActionResult EditRecordForm(long recordid)
         {
             ViewBag.Burialmain = context.Burialmain.ToList();
@@ -120,6 +171,33 @@ namespace INTEXll.Controllers
             context.Burialmain.Remove(burialmain);
             context.SaveChanges();
             return RedirectToAction("Burials");
+        }
+
+        [HttpGet]
+        public IActionResult MoreInfo(long id)
+        {
+            Burialmain burialinfo = context.Burialmain.Where(b => b.Id == id).FirstOrDefault();
+            return PartialView("_SeeMore", burialinfo);
+        }
+
+        public IActionResult AddRecord(long recordid)
+        {
+            //ViewBag.Burialmain = context.Burialmain.ToList();
+            // variable with sql statement to get the right record with passed applicationid 
+            //var app = context.Burialmain.Single(x => x.Id == recordid);
+            // the ", application" is what will fill the form with values
+            return View();
+        }
+        //[HttpPost]
+        //public IActionResult EditRecordForm(Burialmain burialmain)
+        //{
+        //    context.Update(burialmain);
+        //    context.SaveChanges();
+        //    return RedirectToAction("BurialsAdmin");
+        //}
+        public IActionResult Unsupervised()
+        {
+            return View();
         }
     }
 }

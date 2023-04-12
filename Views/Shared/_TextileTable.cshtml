@@ -1,0 +1,38 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model BurialsViewModel
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Locale</th>
+            <th>Textile ID</th>
+            <th>Description</th>
+            <th>Burial Number</th>
+            <th>Estimated Period</th>
+            <th>Sample Date</th>
+            <th>Photographed Data</th>
+            <th>Direction</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var b in Model.Textiles)
+        {
+            <tr>
+                <td>@b.Id</td>
+                <td>@b.Locale
+                <td>@b.Textileid</td>
+                <td>@b.Description</td>
+                <td>@b.Burialnumber</td>
+                <td>@b.Estimatedperiod</td>
+                <td>@b.Sampledate</td>
+                <td>@b.Photographeddate</td>
+                <td>@b.Direction</td>
+            </tr>
+        }
+    </tbody>
+</table>

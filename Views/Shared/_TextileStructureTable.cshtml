@@ -1,0 +1,26 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model BurialsViewModel
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Structure ID</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var b in Model.Structure)
+        {
+            <tr>
+                <td>@b.Id</td>
+                <td>@b.Structureid</td>
+                <td>@b.Value</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,35 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model BurialsViewModel
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Burial ID</th>
+            <th>Depth</th>
+            <th>Preservation</th>
+            <th>Burial Number</th>
+            <th>Excavation Year</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Burialmain b in Model.Burials)
+        {
+            <tr>
+                <td>@b.Id</td>
+                <td>@b.Depth</td>
+                <td>@b.Preservation</td>
+                <td>@b.Burialnumber</td>
+                <td>@b.Fieldbookexcavationyear</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="@("#seeMore-"+ b.Id)" data-url="@Url.Action($"MoreInfo/{b.Id}")">See More</button>
+                    @await Html.PartialAsync("_SeeMore", b)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

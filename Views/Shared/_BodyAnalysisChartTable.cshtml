@@ -1,0 +1,77 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model BurialsViewModel
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Femur</th>
+            <th>Humerus Head Diameter</th>
+            <th>Squamossuture</th>
+            <th>Caries Periodontal Disease</th>
+            <th>Medical IP Ramus</th>
+            <th>Preservation Index</th>
+            <th>Gonion</th>
+            <th>Humerus Length</th>
+            <th>Femur Length</th>
+            <th>Femur</th>
+            <th>Lambdoid Suture</th>
+            <th>Ventralarc</th>
+            <th>Tooth Eruption Age Estimation</th>
+            <th>Nuchal Crest</th>
+            <th>Estimate Stature</th>
+            <th>Notes</th>
+            <th>Osteophytosis</th>
+            <th>Subpubicangle</th>
+            <th>Robust</th>
+            <th>Femur Head Diameter</th>
+            <th>Sciatic Notch</th>
+            <th>Supraorbital Ridges</th>
+            <th>Orbit Edge</th>
+            <th>Tooth Attrition</th>
+            <th>Spheno Occipital Synchondrosis</th>
+            <th>Parietal Blossing</th>
+            <th>Observations</th>
+            <th>Humerus</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var b in Model.Bodyanalysischarts)
+        {
+            <tr>
+                <td>@b.Id</td>
+                <td>@b.Femur
+                <td>@b.Humerusheaddiameter</td>
+                <td>@b.Squamossuture</td>
+                <td>@b.CariesPeriodontalDisease</td>
+                <td>@b.MedicalIpRamus</td>
+                <td>@b.Perservationindex</td>
+                <td>@b.Gonion</td>
+                <td>@b.Humeruslength</td>
+                <td>@b.Femurlength</td>
+                <td>@b.Lambdoidsuture</td>
+                <td>@b.Ventralarc</td>
+                <td>@b.Tootheruptionageestimation</td>
+                <td>@b.Nuchalcrest</td>
+                <td>@b.Estimatestature</td>
+                <td>@b.Notes</td>
+                <td>@b.Osteophytosis</td>
+                <td>@b.Subpubicangle</td>
+                <td>@b.Robust</td>
+                <td>@b.Femurheaddiameter</td>
+                <td>@b.Sciaticnotch</td>
+                <td>@b.Supraorbitalridges</td>
+                <td>@b.Orbitedge</td>
+                <td>@b.Toothattrition</td>
+                <td>@b.Sphenooccipitalsynchondrosis</td>
+                <td>@b.Parietalblossing</td>
+                <td>@b.Observations</td>
+                <td>@b.Humerus</td>
+            </tr>
+        }
+    </tbody>
+</table>

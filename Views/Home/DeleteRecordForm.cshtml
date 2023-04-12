@@ -1,9 +1,12 @@
 ﻿@model Burialmain
 
-<h2>Confirm Deletion for @Model.Id</h2>
+<h2 class="text-center">Please Confirm Deletion.</h2>
+<p class="text-center">(Please note this action cannot be undone)</p>
 
-<form method="post" asp-controller="Home" asp-action="DeleteRecordForm">
-    <button type="submit">Delete</button><br /><br />
-    <input type="hidden" asp-for="Id"/>
-    <a asp-controller="Home" asp-action="Burials" class="btn btn-primary">Cancel</a>
-</form>
+<center>
+    <form method="post" asp-controller="Home" asp-action="DeleteRecordForm">
+        <button class="btn btn-danger" type="submit">Yes, I want to Delete</button><br /><br />
+        <input type="hidden" asp-for="Id" />
+        <a asp-controller="Home" asp-action="Burials" class="btn btn-primary">No, I Changed My Mind.</a>
+    </form>
+</center>
