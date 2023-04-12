@@ -17,6 +17,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using INTEXll.Models.RoleModel;
+using Microsoft.ML.OnnxRuntime;
 
 namespace INTEXll
 {
@@ -42,7 +43,9 @@ namespace INTEXll
                 .AddDefaultUI()
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-
+            services.AddSingleton<InferenceSession>(
+              new InferenceSession("Models/modelagain.onnx")
+            );
 
             services.AddControllersWithViews();
             services.AddRazorPages();
