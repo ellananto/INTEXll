@@ -143,7 +143,7 @@ namespace INTEXll.Controllers
 
 
 
-        public IActionResult Users()
+        public IActionResult Admin()
         {
             var userInfo = identityContext.Users.OrderBy(x => x.Id).ToList();
             return View(userInfo);
