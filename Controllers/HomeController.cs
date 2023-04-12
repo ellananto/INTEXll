@@ -168,7 +168,10 @@ namespace INTEXll.Controllers
             };
             return View(x);
         }
-        public IActionResult Users()
+
+
+
+        public IActionResult Admin()
         {
             var userInfo = identityContext.Users.OrderBy(x => x.Id).ToList();
             return View(userInfo);
@@ -214,15 +217,23 @@ namespace INTEXll.Controllers
             return PartialView("_SeeMore", burialinfo);
         }
 
-        public IActionResult AddRecord(long recordid)
+        [HttpGet]
+        public IActionResult AddRecord()
         {
-            //ViewBag.Burialmain = context.Burialmain.ToList();
-            // variable with sql statement to get the right record with passed applicationid 
-            //var app = context.Burialmain.Single(x => x.Id == recordid);
-            // the ", application" is what will fill the form with values
             return View();
         }
-    public IActionResult Unsupervised()
+        [HttpPost]
+        public IActionResult AddRecord(Burialmain burialmain)
+        {
+            context.Burialmain.Add(burialmain);
+            context.SaveChanges();
+            return RedirectToAction("BurialsAdmin");
+        }
+        //ViewBag.Burialmain = context.Burialmain.ToList();
+        // variable with sql statement to get the right record with passed applicationid 
+        //var app = context.Burialmain.Single(x => x.Id == recordid);
+        // the ", application" is what will fill the form with values
+        public IActionResult Unsupervised()
         {
             return View();
         }
