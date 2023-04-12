@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using INTEXll.Models.RoleModel;
 
 namespace INTEXll
 {
@@ -36,8 +37,13 @@ namespace INTEXll
                     Configuration.GetConnectionString("Database1Connection")));
             services.AddDbContext<burialContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("Database1Connection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+
+            services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddDefaultUI()
+                .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.Configure<CookiePolicyOptions>(options =>
