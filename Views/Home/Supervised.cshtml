@@ -1,5 +1,106 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+}
+@model INTEXll.Controllers.HomeController.SupervisedData
+
+<h1>Predict Wrapping of Burial</h1>
+
+<p>The more data you enter the more accurate the prediction will be:</p>
+
+<form method="post">
+    <div class="form-group">
+
+        <label for="headdirection">Input Head Direction:</label>
+        <select class="form-control" name="headdirection">
+            <option value="">---</option>
+            <option value="N">North</option>
+            <option value="E">East</option>
+            <option value="S">South</option>
+            <option value="W">West</option>
+        </select>
+
+        <label for="northsouth">Input NorthSouth:</label>
+        <select class="form-control" name="northsouth">
+            <option value="">---</option>
+            <option value="N">North</option>
+            <option value="S">South</option>
+        </select>
+
+        <label for="eastwest">Input EastWest:</label>
+        <select class="form-control" name="eastwest">
+            <option value="">---</option>
+            <option value="E">East</option>
+            <option value="W">West</option>
+        </select>
+
+        <label for="adultsubadult">Input AdultSubadult:</label>
+        <select class="form-control" name="adultsubadult">
+            <option value="">---</option>
+            <option value="A">Adult</option>
+            <option value="C">Child</option>
+        </select>
+
+        <label for="samplescollected">Input Sample Collected?:</label>
+        <select class="form-control" name="samplescollected">
+            <option value="">---</option>
+            <option value="true">True</option>
+            <option value="false">False</option>
+        </select>
+
+        <label for="area">Input Area:</label>
+        <select class="form-control" name="samplescollected">
+            <option value="">---</option>
+            <option value="SE">South East</option>
+            <option value="SW">South West</option>
+            <option value="NE">North East</option>
+            <option value="NW">North West</option>
+        </select>
+
+        <label for="ageatdeath">Input Age at Death:</label>
+        <select class="form-control" name="ageatdeath">
+            <option value="">---</option>
+            <option value="A">Adult</option>
+            <option value="C">Child</option>
+            <option value="I">Infant</option>
+            <option value="N">Newborn</option>
+        </select>
+
+        <label for="depth">Input Depth:</label>
+        <input type="number" class="form-control" name="depth" step="0.1" />
+
+        <label for="squarenorthsouth">Input Square NorthSouth:</label>
+        <input type="number" class="form-control" name="squarenorthsouth" />
+
+        <label for="squareeastwest">Input Square EastWest:</label>
+        <input type="number" class="form-control" name="squareeastwest" />
+
+        <label for="southtohead">Input South to Head:</label>
+        <input type="number" class="form-control" name="southtohead" step="0.1"/>
+
+        <label for="westtohead">Input West to Head:</label>
+        <input type="number" class="form-control" name="westtohead" step="0.1"/>
+
+        <label for="southtofeet">Input South to Feet:</label>
+        <input type="number" class="form-control" name="southtofeet" step="0.1"/>
+
+        <label for="westtofeet">Input West to Feet:</label>
+        <input type="number" class="form-control" name="westtofeet" step="0.1"/>
+
+        <label for="fieldbookpage">Input Field Book Page:</label>
+        <input type="number" class="form-control" name="fieldbookpage" />
+
+        <label for="length">Input Length:</label>
+        <input type="number" class="form-control" name="length" step="0.1"/>
+
+        <label for="burialnumber">Input Burial Number:</label>
+        <input type="number" class="form-control" name="burialnumber" />
+
+        <label for="fieldbookexcavationyear">Input Field Book Excavation Year:</label>
+        <input type="number" class="form-control" name="fieldbookexcavationyear" />
+    </div>
+    <button type="submit" class="btn btn-primary">Make Prediction</button>
+</form>
+
+@if (ViewData["output"] != null)
+{
+    <p>Prediction: @ViewData["output"]</p>
 }

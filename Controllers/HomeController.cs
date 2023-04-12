@@ -9,6 +9,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using INTEXll.Data;
+using Microsoft.ML.Transforms;
+using Microsoft.ML.Transforms.Onnx;
+using Microsoft.ML;
+using System.IO;
+using Microsoft.ML.Data;
 
 namespace INTEXll.Controllers
 {
@@ -142,6 +147,100 @@ namespace INTEXll.Controllers
         }
 
 
+        //public IActionResult EditRecordForm(long recordid)
+        //{
+        //    var x = new BurialsViewModel
+        //    {
+        //        Burials = repo.Burials
+        //       .Where(x => x.Id == recordid),
+        //    };
+        //    return View(x);
+        //}
+
+        public class SupervisedController : Controller
+        {
+            private readonly MLContext _mlContext;
+            private readonly ITransformer _model;
+            private readonly PredictionEngine<SupervisedData, SupervisedPrediction> _engine;
+
+            public SupervisedController()
+            {
+                _mlContext = new MLContext();
+
+                // Load the ONNX model
+                var modelPath = Path.Combine(Directory.GetCurrentDirectory(), "Models", "model.onnx");
+                _model = _mlContext.Model.Load(modelPath, out var schema);
+
+                // Create a prediction engine
+                _engine = _mlContext.Model.CreatePredictionEngine<SupervisedData, SupervisedPrediction>(_model);
+
+            }
+
+            [HttpGet]
+            public IActionResult Index()
+            {
+                return View();
+            }
+
+            [HttpPost]
+            public IActionResult Index(SupervisedData input)
+            {
+                // Make a prediction using the ONNX model
+                var output = _engine.Predict(input);
+
+                // Pass the prediction result to the view
+                ViewData["output"] = output.Prediction;
+
+                return View();
+            }
+        }
+
+        public class SupervisedData
+        {
+            [ColumnName("headdirection")]
+            public string HeadDirection { get; set; }
+            [ColumnName("northsouth")]
+            public string NorthSouth { get; set; }
+            [ColumnName("eastwest")]
+            public string EastWest { get; set; }
+            [ColumnName("adultsubadult")]
+            public string AdultSubadult { get; set; }
+            [ColumnName("samplescollected")]
+            public string SamplesCollected { get; set; }
+            [ColumnName("area")]
+            public string Area { get; set; }
+            [ColumnName("ageatdeath")]
+            public string AgeAtDeath { get; set; }
+            [ColumnName("depth")]
+            public double Depth { get; set; }
+            [ColumnName("squarenorthsouth")]
+            public int SquareNorthSouth { get; set; }
+            [ColumnName("squareeastwest")]
+            public int SquareEastWest { get; set; }
+            [ColumnName("southtohead")]
+            public double SouthToHead { get; set; }
+            [ColumnName("westtohead")]
+            public double WestToHead { get; set; }
+            [ColumnName("southtofeet")]
+            public double SouthToFeet { get; set; }
+            [ColumnName("westtofeet")]
+            public double WestToFeet { get; set; }
+            [ColumnName("fieldbookpage")]
+            public int FieldBookPage { get; set; }
+            [ColumnName("length")]
+            public double Length { get; set; }
+            [ColumnName("burialnumber")]
+            public int BurialNumber { get; set; }
+            [ColumnName("fieldbookexcavationyear")]
+            public int FieldBookExcavationYear { get; set; }
+        }
+
+        public class SupervisedPrediction
+        {
+            [ColumnName("output")]
+            public float Prediction { get; set; }
+
+
         public IActionResult EditRecordForm(long recordid)
         {
             ViewBag.Burialmain = context.Burialmain.ToList();
@@ -171,6 +270,7 @@ namespace INTEXll.Controllers
             context.Burialmain.Remove(burialmain);
             context.SaveChanges();
             return RedirectToAction("Burials");
+
         }
 
         [HttpGet]
