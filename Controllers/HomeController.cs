@@ -121,6 +121,7 @@ namespace INTEXll.Controllers
 
                 // Create a prediction engine
                 _engine = _mlContext.Model.CreatePredictionEngine<SupervisedData, SupervisedPrediction>(_model);
+
             }
 
             [HttpGet]
@@ -144,8 +145,42 @@ namespace INTEXll.Controllers
 
         public class SupervisedData
         {
-            [ColumnName("input")]
-            public float Input { get; set; }
+            [ColumnName("headdirection")]
+            public string HeadDirection { get; set; }
+            [ColumnName("northsouth")]
+            public string NorthSouth { get; set; }
+            [ColumnName("eastwest")]
+            public string EastWest { get; set; }
+            [ColumnName("adultsubadult")]
+            public string AdultSubadult { get; set; }
+            [ColumnName("samplescollected")]
+            public string SamplesCollected { get; set; }
+            [ColumnName("area")]
+            public string Area { get; set; }
+            [ColumnName("ageatdeath")]
+            public string AgeAtDeath { get; set; }
+            [ColumnName("depth")]
+            public double Depth { get; set; }
+            [ColumnName("squarenorthsouth")]
+            public int SquareNorthSouth { get; set; }
+            [ColumnName("squareeastwest")]
+            public int SquareEastWest { get; set; }
+            [ColumnName("southtohead")]
+            public double SouthToHead { get; set; }
+            [ColumnName("westtohead")]
+            public double WestToHead { get; set; }
+            [ColumnName("southtofeet")]
+            public double SouthToFeet { get; set; }
+            [ColumnName("westtofeet")]
+            public double WestToFeet { get; set; }
+            [ColumnName("fieldbookpage")]
+            public int FieldBookPage { get; set; }
+            [ColumnName("length")]
+            public double Length { get; set; }
+            [ColumnName("burialnumber")]
+            public int BurialNumber { get; set; }
+            [ColumnName("fieldbookexcavationyear")]
+            public int FieldBookExcavationYear { get; set; }
         }
 
         public class SupervisedPrediction
