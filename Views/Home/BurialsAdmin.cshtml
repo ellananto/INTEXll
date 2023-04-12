@@ -1,12 +1,12 @@
 ﻿@model BurialsViewModel
-
-<h1 class="text-center">Manage Burial Records</h1>
-    <p>The data displayed below are records of various categories of information gathered about a collection of burials that have been uncovered.You can add, remove, and edit records as you see fit.</p>
-    <a class="btn btn-success" asp-controller="Home" asp-action="AddRecord">Add a Record</a>
-    <br />
-    <div class="row">
-        <div class="col-9">
-            <div>
+    <div class="container mt-5">
+        <h1 class="text-center">Manage Burial Records</h1>
+        <p>The data displayed below are records of various categories of information gathered about a collection of burials that have been uncovered.You can add, remove, and edit records as you see fit.</p>
+        <a class="btn btn-success" asp-controller="Home" asp-action="AddRecord">Add a Record</a>
+        <br />
+        <div class="row">
+            <div class="col-9">
+                <div>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -40,11 +40,12 @@
                                     </td>
                                 </tr>
                             }
-                            </tbody>
+                        </tbody>
                     </table>
-                
+
+                </div>
             </div>
         </div>
-    </div>
 
-    <div page-model="" page-blah="@Model.PageInfo" page-action="Burials" page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-class-enabled="true" class="btn-group pull-right m-1"></div>
+        <div page-model="" page-blah="@Model.PageInfo" page-action="Burials" page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-class-enabled="true" class="btn-group pull-right m-1"></div>
+        </div>
