@@ -9,15 +9,15 @@ namespace INTEXll.Components
 {
     public class TypesViewComponents : ViewComponent
     {
-		private IBurialRepository repo { get; set; }
-		public TypesViewComponents (IBurialRepository temp)
+		private burialContext context { get; set; }
+		public TypesViewComponents (burialContext temp)
 		{
-			repo = temp;
+			context = temp;
 		}
 		public IViewComponentResult Invoke()
 		{
 			ViewBag.SelectedType = RouteData?.Values["area"];
-			var types = repo.Burials
+			var types = context.Burialmain
 				.Select(x => x.Area)
 				.Distinct()
 				.OrderBy(x => x);
