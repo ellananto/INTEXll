@@ -11,7 +11,7 @@ using INTEXll.Models.RoleModel;
 
 namespace INTEXll.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class UserRoleManagementController : Controller
     {
         private readonly UserManager<IdentityUser> userManager;
