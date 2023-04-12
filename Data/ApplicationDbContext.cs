@@ -13,6 +13,7 @@ namespace INTEXll.Data
             : base(options)
         {
         }
+       
 
     }
 }
