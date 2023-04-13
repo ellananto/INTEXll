@@ -1,11 +1,15 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>@ViewData["Title"] - INTEXll</title>
+    <title>@ViewData["Title"] - Fag El-Gamous</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -50,8 +54,10 @@
             <ul>
                 <li><a class="nav-link scrollto active" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                 <li><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="Burials">Public Burials</a></li>
-                <li><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="BurialsAdmin">Manage Burials</a></li>
-                <li><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="Admin">Admin</a></li>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                            <li><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="BurialsAdmin">Manage Burials</a></li>
+                            <li><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="Admin">Admin</a></li>}
                 <li><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="Supervised">Supervised Model</a></li>
                 <li><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="Unsupervised">Unsupervised Model</a></li>
                 <partial name="_LoginPartial" />
@@ -60,20 +66,20 @@
     </div>
 </header>
 <body>
-        <partial name="_CookieConsentPartial" />
-        <main role="main" class="pb-3" style="padding-top: 100px">
-            @RenderBody()
-        </main>
+    <partial name="_CookieConsentPartial" />
+    <main role="main" class="pb-3" style="padding-top: 100px">
+        @RenderBody()
+    </main>
 
-        <footer class="border-top footer text-muted">
-            <div class="container">
-                &copy; 2023 - INTEXll - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            </div>
-        </footer>
-        <script src="~/lib/jquery/dist/jquery.min.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        @RenderSection("Scripts", required: false)
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - INTEXll - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

@@ -219,6 +219,24 @@ namespace INTEXll.Controllers
         [HttpPost]
         public async Task<IActionResult> Supervised(HousingData data)
         {
+            if (data.HeadDirection_E == 1) { data.HeadDirection_W = 0; }
+            if (data.HeadDirection_W == 2) { data.HeadDirection_W = 1; data.HeadDirection_E = 0; }
+            if (data.NorthSouth_N == 2) { data.NorthSouth_N = 0; }
+            if (data.EastWest_E == 1) { data.EastWest_W = 0; }
+            if (data.EastWest_E == 2) { data.EastWest_W = 1; data.EastWest_E = 0; }
+            if (data.AdultSubAdult_A == 1) { data.AdultSubAdult_C = 0; }
+            if (data.AdultSubAdult_C == 2) { data.AdultSubAdult_C = 1; data.AdultSubAdult_A = 0; }
+            if (data.SamplesCollected_True == 1) { data.SamplesCollected_False = 0; data.SamplesCollected_Other = 0; }
+            if (data.SamplesCollected_True == 2) { data.SamplesCollected_True = 0; data.SamplesCollected_False = 1; data.SamplesCollected_Other = 0; }
+            if (data.SamplesCollected_True == 3) { data.SamplesCollected_True = 0; data.SamplesCollected_False = 0; data.SamplesCollected_Other = 1; }
+            if (data.Area_NE == 1) { data.Area_NW = 0; data.Area_SE = 0; data.Area_SW = 0; }
+            if (data.Area_NE == 2) { data.Area_NE = 0; data.Area_NW = 1; data.Area_SE = 0; data.Area_SW = 0; }
+            if (data.Area_NE == 3) { data.Area_NE = 0; data.Area_NW = 0; data.Area_SE = 1; data.Area_SW = 0; }
+            if (data.Area_NE == 4) { data.Area_NE = 0; data.Area_NW = 0; data.Area_SE = 0; data.Area_SW = 1; }
+            if (data.AgeAtDeath_A == 1) { data.AgeAtDeath_C = 0; data.AgeAtDeath_I = 0; data.AgeAtDeath_N = 0; } 
+            if (data.AgeAtDeath_A == 2) { data.AgeAtDeath_A = 0; data.AgeAtDeath_C = 1; data.AgeAtDeath_I = 0; data.AgeAtDeath_N = 0; }
+            if (data.AgeAtDeath_A == 3) { data.AgeAtDeath_A = 0; data.AgeAtDeath_C = 0; data.AgeAtDeath_I = 1; data.AgeAtDeath_N = 0; }
+            if (data.AgeAtDeath_A == 4) { data.AgeAtDeath_A = 0; data.AgeAtDeath_C = 0; data.AgeAtDeath_I = 0; data.AgeAtDeath_N = 0; }
             using (var client = new HttpClient())
             {
                 var uri = new Uri("https://localhost:44339/score");
@@ -248,6 +266,7 @@ namespace INTEXll.Controllers
             var x = new BurialsViewModel
             {
                 Burials = context.Burialmain
+                .OrderBy(x => x.Id)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
 
@@ -271,9 +290,7 @@ namespace INTEXll.Controllers
         public IActionResult EditRecordForm(long recordid)
         {
             ViewBag.Burialmain = context.Burialmain.ToList();
-            // variable with sql statement to get the right record with passed applicationid 
             var app = context.Burialmain.Single(x => x.Id == recordid);
-            // the ", application" is what will fill the form with values
             return View(app);
         }
         [HttpPost]
