@@ -1,17 +1,21 @@
 ﻿@{
 }
 <div class="container mt-5">
-    <h1>Unsupervised Model Observations</h1>
+    <h1>Unsupervised Model Observations</h1><br /><br />
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title">Correlation of Location and Wrapping</h3>
+            <p class="card-text">
+                The 3D model shows the dig site by sectors north/south, east/west, and by depth reflected appropriatley in the graph.
+                As you can see there are a lot more fully wrapped remains on the North end of the site. This may imply that the location
+                of the burial had some significance to the egyptions causing the people buried in that spot to have more wrappings
+                than other burial locations of the site.
+            </p>
+        </div>
+    </div>
     <br />
     <br />
-    <h3 style="text-underline-offset">Correlation of Location and Wrapping</h3>
     <br />
-    <p>
-        The 3D model shows the dig site by sectors north/south, east/west, and by depth reflected appropriatley in the graph.
-        As you can see there are a lot more fully wrapped remains on the North end of the site. This may imply that the location
-        of the burial had some significance to the egyptions causing the people buried in that spot to have more wrappings
-        than other burial locations of the site.
-    </p>
     <script>
         var currentImage = 1;
         var currentImage2 = 1;
@@ -54,24 +58,32 @@
     <div style="background-color: darkgray; height: 1px; width: 90%; margin: 0 auto;"></div>
     <br /> <br /> <br />
 
-    <h3>Correlation of Age at Death and Wrapping</h3>
-    <br />
-    <p>
-        This bar graph shows the correlation between the burials of children and fully wrapped burials. You can read this graph
-        by looking at the right side meaning the burial was a child and seeing how many were fully wrapped (the orange) vs.
-        other age groups (left bar). This shows that the people would fully wrap the children more often than infants, newborns and adults.
-    </p>
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title">Correlation of Age at Death and Wrapping</h3>
+            <p class="card-text">
+                This bar graph shows the correlation between the burials of children and fully wrapped burials. You can read this graph
+                by looking at the right side meaning the burial was a child and seeing how many were fully wrapped (the orange) vs.
+                other age groups (left bar). This shows that the people would fully wrap the children more often than infants, newborns and adults.
+            </p>
+        </div>
+    </div>
     <br />
     <img src="~/assets/img/Screenshot 2023-04-12 145729.png" />
     <br /> <br /> <br /> <br />
     <div style="background-color: darkgray; height: 1px; width: 90%; margin: 0 auto;"></div>
     <br /> <br /> <br />
-    <p>
-        This graph ,similarly to the other 3D model, shows the location and the preservation of the mummy. This graph shows the poorly
-        preserved mummies as the yellow dots and the others as the purple dots. This graph shows a strong correlation between poorly
-        preserved mummies and square east west. All of the poorly preserved mummies in this sample are buried on the East side. This 
-        could imply that the egyptions used a different preservation technique for the burials in that location or that something in
-        the soil of that area could have affected the way that the mummies were preserved.
-    </p>
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title">Correlation of Location and Preservation</h3>
+            <p class="card-text">
+                This graph ,similarly to the other 3D model, shows the location and the preservation of the mummy. This graph shows the poorly
+                preserved mummies as the yellow dots and the others as the purple dots. This graph shows a strong correlation between poorly
+                preserved mummies and square east west. All of the poorly preserved mummies in this sample are buried on the East side. This
+                could imply that the egyptions used a different preservation technique for the burials in that location or that something in
+                the soil of that area could have affected the way that the mummies were preserved.
+            </p>
+        </div>
+    </div>
     <img id="image_preservation" src="https://localhost:44339/assets/img/Preservation_1.png" />
 </div>
