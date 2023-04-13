@@ -97,8 +97,12 @@ namespace INTEXll
             app.UseRouting();
 
             app.UseAuthentication();
-            app.UseAuthorization();
-
+            //app.UseAuthorization();
+            //app.Use(async (context, next) =>
+            //{
+            //    context.Response.Headers.Add("Content-Security-Policy", "frame-src 'self'; img-src 'self'; font-src 'self'; ");
+            //    await next();
+            //});
             app.UseEndpoints(endpoints =>
             {
                 //endpoints.MapControllerRoute("id", "{controller}/{action}/{id?}", new { Controller = "Home", action = "MoreInfo" });

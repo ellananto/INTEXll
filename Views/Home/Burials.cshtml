@@ -180,8 +180,8 @@
                                             <div class="container">
                                                 <div class="row">
                                                     <div class="form-group col">
-                                                        <label for="Value" style="color:white">Value</label>
-                                                        <input type="text" class="form-control" id="Value" placeholder="10" name="Value">
+                                                        <label for="TSValue" style="color:white">Value</label>
+                                                        <input type="text" class="form-control" id="TSValue" placeholder="10" name="TSValue">
                                                     </div>
                                                     <br />
                                                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -191,12 +191,12 @@
                                     }
                                     else if (ViewBag.SelectedType == "TextileColor")
                                     {
-                                        <form method="post" asp-action="TextileColor" asp-route-table="TextileColor" asp-route-pageNum="1">
+                                        <form method="post" asp-action="Burials" asp-route-table="TextileColor" asp-route-pageNum="1">
                                             <div class="container">
                                                 <div class="row">
                                                     <div class="form-group col">
-                                                        <label for="Value" style="color:white">Value</label>
-                                                        <input type="text" class="form-control" id="Value" placeholder="Undyed" name="Value">
+                                                        <label for="TValue" style="color:white">Value</label>
+                                                        <input type="text" class="form-control" id="TValue" placeholder="Undyed" name="TValue">
                                                     </div>
                                                     <br />
                                                     <button type="submit" class="btn btn-primary">Submit</button>

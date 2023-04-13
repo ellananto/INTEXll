@@ -156,7 +156,7 @@ namespace INTEXll.Controllers
                 case "TextileColor":
                     var colorsQuery = context.Color.AsQueryable();
 
-                    if (!string.IsNullOrEmpty(tc.TCValue)) { colorsQuery = colorsQuery.Where(x => x.Value == tc.TCValue); }
+                    if (!string.IsNullOrEmpty(tc.TValue)) { colorsQuery = colorsQuery.Where(x => x.Value == tc.TValue); }
 
                     bigQuery = colorsQuery;
 
