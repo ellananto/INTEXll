@@ -11,6 +11,7 @@ using INTEXll.Models.RoleModel;
 
 namespace INTEXll.Controllers
 {
+    // Setting up Admin Authorization to access certain views
     [Authorize(Roles = "Admin")]
     public class UserRoleManagementController : Controller
     {
@@ -23,7 +24,7 @@ namespace INTEXll.Controllers
             this.userManager = userManager;
             this.roleManager = roleManager;
         }
-
+        // Creating Views roles and users
         [HttpGet]
         public IActionResult Index()
         {
