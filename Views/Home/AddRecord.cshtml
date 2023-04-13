@@ -1,77 +1,153 @@
 ﻿@model Burialmain
 
-    <div class="container mt-5">
-        <h1>Add a Record Below</h1>
-
+<center>
+    <div class="card text-white bg-dark mb-3" style="max-width: 50rem;">
         <form method="post" asp-action="AddRecord">
-            <label>ID: </label>
-            <input id="Id" asp-for="Id" /><br />
-            <label>Square North/South: </label>
-            <input id="Squarenorthsouth" asp-for="Squarenorthsouth" /><br />
-            <label>Head Direction: </label>
-            <input id="Headdirection" asp-for="Headdirection" /><br />
-            <label>Sex: </label>
-            <input id="Sex" asp-for="Sex" /><br />
-            <label>North/South: </label>
-            <input id="Northsouth" asp-for="Northsouth" /><br />
-            <label>Depth: </label>
-            <input id="Depth" asp-for="Depth" /><br />
-            <label>East/West: </label>
-            <input id="Eastwest" asp-for="Eastwest" /><br />
-            <label>Adult/Sub Adult: </label>
-            <input id="Adultsubadult" asp-for="Adultsubadult" /><br />
-            <label>Face Bundles: </label>
-            <input id="Facebundles" asp-for="Facebundles" /><br />
-            <label>South to Head: </label>
-            <input id="Southtohead" asp-for="Southtohead" /><br />
-            <label>Preservation: </label>
-            <input id="Preservation" asp-for="Preservation" /><br />
-            <label>Square East/West: </label>
-            <input id="Squareeastwest" asp-for="Squareeastwest" /><br />
-            <label>Goods: </label>
-            <input id="Goods" asp-for="Goods" /><br />
-            <label>Wrapping: </label>
-            <input id="Wrapping" asp-for="Wrapping" /><br />
-            <label>Hair Color: </label>
-            <input id="Haircolor" asp-for="Haircolor" /><br />
-            <label>West to Head: </label>
-            <input id="Westtohead" asp-for="Westtohead" /><br />
-            <label>Samples Collected: </label>
-            <input id="Samplescollected" asp-for="Samplescollected" /><br />
-            <label>Area: </label>
-            <input id="Area" asp-for="Area" /><br />
-            <label>Burial ID: </label>
-            <input id="BurialId" asp-for="Burialid" /><br />
-            <label>Length: </label>
-            <input id="Length" asp-for="Length" /><br />
-            <label>Burial Number: </label>
-            <input id="BurialNumber" asp-for="Burialnumber" /><br />
-            <label>Data Expert Initials: </label>
-            <input id="Dataexpertinitials" asp-for="Dataexpertinitials" /><br />
-            <label>West to Feet: </label>
-            <input id="Westtofeet" asp-for="Westtofeet" /><br />
-            <label>Age at Death: </label>
-            <input id="Ageatdeath" asp-for="Ageatdeath" /><br />
-            <label>South to Feet: </label>
-            <input id="Southtofeet" asp-for="Southtofeet" /><br />
-            <label>Excavation Recorder: </label>
-            <input id="Excavationrecorder" asp-for="Excavationrecorder" /><br />
-            <label>Photos: </label>
-            <input id="Photos" asp-for="Photos" /><br />
-            <label>Hair: </label>
-            <input id="Hair" asp-for="Hair" /><br />
-            <label>Burial Materials: </label>
-            <input id="Burialmaterials" asp-for="Burialmaterials" /><br />
-            <label>Date of Excavation: </label>
-            <input id="Dateofexcavation" asp-for="Dateofexcavation" /><br />
-            <label>Fieldbook Excavation Year: </label>
-            <input id="fieldbookexcavationyear" asp-for="Fieldbookexcavationyear" /><br />
-            <label>Cluster Number: </label>
-            <input id="Clusternumber" asp-for="Clusternumber" /><br />
-            <label>Shaft Number: </label>
-            <input id="Shaftnumber" asp-for="Shaftnumber" /><br />
-            <label>Text: </label>
-            <textarea id="Text" rows="4" asp-for="Text"></textarea><br /><br />
-            <input class="btn btn-primary" id="btnSend" type="submit" value="Submit Changes" />
-        </form>
+            <h1 class="card-header">Add a Record Below</h1>
+            <div class="card-body text-white">
+                <div class="col">
+                    <label class="form-label">ID: </label>
+                    <input id="Id" asp-for="Id" class="form-control"/>
+                </div>
+                <div class="col">
+                    <label class="form-label">Square North/South: </label>
+                    <input id="Squarenorthsouth" asp-for="Squarenorthsouth" class="form-control" />
+                </div>
+                <div class="col">
+                    <label class="form-label">Head Direction: </label>
+                    <input id="Headdirection" asp-for="Headdirection" class="form-control"/>
+                </div>
+                <div class="col">
+                    <label class="form-label">Sex: </label>
+                    <input id="Sex" asp-for="Sex" class="form-control"/>
+                </div>
+                <div class="col">
+                    <label class="form-label">North/South: </label>
+                    <input id="Northsouth" asp-for="Northsouth" class="form-control" />
+                </div>
+                <div class="col">
+                    <label class="form-label">Depth: </label>
+                    <input id="Depth" asp-for="Depth" class="form-control"/>
+                </div>
+                <div class="col">
+                    <label class="form-label" >East/West: </label>
+                    <input id="Eastwest" asp-for="Eastwest" class="form-control" />
+                </div>
+                <div class="col">
+                    <label class="form-label">Adult/Sub Adult: </label>
+                    <input id="Adultsubadult" asp-for="Adultsubadult" class="form-control"/>
+                </div>
+                <div class="col">
+                    <label class="form-label">Face Bundles: </label>
+                    <input id="Facebundles" asp-for="Facebundles" class="form-control"/>
+                </div>
+                <div class="col">
+                    <label class="form-label">South to Head: </label>
+                    <input id="Southtohead" asp-for="Southtohead" class="form-control"/>
+                </div>
+                <div class="col">
+                    <label class="form-label">Preservation: </label>
+                    <input id="Preservation" asp-for="Preservation" class="form-control"/>
+                </div>
+                <div class="col">
+                    <label class="form-label">Square East/West: </label>
+                    <input id="Squareeastwest" asp-for="Squareeastwest" class="form-control"/>
+                </div>
+                <div class="col">
+                    <label class="form-label">Goods: </label>
+                    <input id="Goods" asp-for="Goods" class="form-control"/>
+                </div>
+                <div class="col">
+                    <label class="form-label">Wrapping: </label>
+                    <input id="Wrapping" asp-for="Wrapping" class="form-control"/>
+                <div>
+                <div class="col">
+                    <label class="form-label">Hair Color: </label>
+                    <input id="Haircolor" asp-for="Haircolor" class="form-control"/>
+                </div>
+                <div class="col">
+                    <label class="form-label">West to Head: </label>
+                    <input id="Westtohead" asp-for="Westtohead" class="form-control" />
+                </div>
+                <div class="col">
+                    <label class="form-label">Samples Collected: </label>
+                    <input id="Samplescollected" asp-for="Samplescollected" class="form-control" />
+                </div>
+                <div class="col">
+                    <label class="form-label">Area: </label>
+                    <input id="Area" asp-for="Area" class="form-control"/>
+                </div>
+                <div class="col">
+                    <label class="form-label">Burial ID: </label>
+                    <input id="BurialId" asp-for="Burialid" class="form-control"/>
+                <div>
+                <div class="col">
+                    <label class="form-label">Length: </label>
+                    <input id="Length" asp-for="Length" class="form-control"/>
+                </div>
+                <div class="col">
+                    <label class="form-label">Burial Number: </label>
+                    <input id="BurialNumber" asp-for="Burialnumber" class="form-control" />
+                </div>
+                <div col="col">
+                    <label>Data Expert Initials: </label>
+                    <input id="Dataexpertinitials" asp-for="Dataexpertinitials" class="form-control"/>
+                </div>
+                <div class="col">
+                    <label class="form-label">West to Feet: </label>
+                    <input id="Westtofeet" asp-for="Westtofeet" class="form-control"/>
+                </div>
+                <div class="col">
+                    <label class="form-label">Age at Death: </label>
+                    <input id="Ageatdeath" asp-for="Ageatdeath" class="form-control"/>
+                </div>
+                <div class="col">
+                    <label class="form-label">South to Feet: </label>
+                    <input id="Southtofeet" asp-for="Southtofeet" class="form-control"/>
+                </div>
+                <div class="col"></div>
+                    <label class="form-label">Excavation Recorder: </label>
+                    <input id="Excavationrecorder" asp-for="Excavationrecorder" class="form-control"/>
+                </div>
+                <div class="col">
+                    <label class="form-label">Photos: </label>
+                    <input id="Photos" asp-for="Photos" class="form-control"/>
+                </div>
+                <div class="col">
+                    <label class="form-label">Hair: </label>
+                    <input id="Hair" asp-for="Hair" class="form-control" />
+                </div>
+                <div class="col"></div>
+                    <label class="form-label">Burial Materials: </label>
+                    <input id="Burialmaterials" asp-for="Burialmaterials" class="form-control"/>
+                </div>
+                <div class="col">
+                    <label class="form-label">Date of Excavation: </label>
+                    <input id="Dateofexcavation" asp-for="Dateofexcavation" class="form-control"/>
+                </div>
+                <div class="col">
+                    <label class="form-label">Fieldbook Excavation Year: </label>
+                    <input id="fieldbookexcavationyear" asp-for="Fieldbookexcavationyear" class="form-control"/>
+                </div>
+                <div class="col">
+                    <label class="form-label">Cluster Number: </label>
+                    <input id="Clusternumber" asp-for="Clusternumber" class="form-control"/>
+                </div>
+                <div class="col">
+                    <label class="form-label">Shaft Number: </label>
+                    <input id="Shaftnumber" asp-for="Shaftnumber" class="form-control"/>
+                </div>
+                <div class="col">
+                    <label class="form-label">Text: </label>
+                    <textarea id="Text" rows="4" asp-for="Text"></textarea>
+                </div>
+                    <br /><br />
+                <div class="col">
+                    <br />
+                    <input class="btn btn-primary" id="btnSend" type="submit" value="Submit Changes" />
+                </div>
+            </div>
         </div>
+                </form>
+    </div>
+</center>
