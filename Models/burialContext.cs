@@ -928,7 +928,7 @@ namespace INTEXll.Models
 
                 entity.Property(e => e.Structureid).HasColumnName("structureid");
 
-                entity.Property(e => e.Value)
+                entity.Property(e => e.TSValue)
                     .HasColumnName("value")
                     .HasMaxLength(500);
             });

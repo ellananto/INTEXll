@@ -33,6 +33,8 @@ namespace INTEXll
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var secrets = new ConfigurationBuilder().AddJsonFile("secrets.json", optional: true, reloadOnChange: true).Build();
+            var connectionstring = Configuration.GetConnectionString("Database1Connection");
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(
                     Configuration.GetConnectionString("Database1Connection")));

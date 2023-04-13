@@ -7,16 +7,15 @@
 @if (signInManager.IsSignedIn(User))
 {
 <div class="text-center">
-    <h1 class="display-4">Welcome <b>@User.Identity.Name</b></h1>
-    <p>Ellas carrying Intex!</p>
+    <h1 class="display-4">Welcome, <b>@User.Identity.Name.</b></h1>
+    <p>Welcome to your admin page. As an administrator of this website, you have the ability to assign roles, take them away, <br />and view all user permissions. Click the button below to make any edits you deem necessary.</p>
     <a asp-action="Index" asp-controller="UserRoleManagement" class="btn btn-outline-secondary">Configure User Roles</a>
 </div>
 }
 else
 {
-    <h1 class="display-4 text-center">Welcome</h1>
+    <h1 class="display-4 text-center">Welcome.</h1>
     <h1 class="text-center">Please login to view more...</h1>
-
 }
 
 

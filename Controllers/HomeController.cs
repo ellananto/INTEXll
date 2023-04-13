@@ -41,11 +41,41 @@ namespace INTEXll.Controllers
         }
         [HttpGet]
 
-        public IActionResult Burials(string area, string filter, int pageNum = 1)
+        public IActionResult Burials(string area, int pageNum = 1)
         {
             int pageSize = 100;
             ViewBag.SelectedType = area;
-            ViewBag.SelectedFilter = filter;
+            ViewBag.SelectedPage = pageNum;
+            int totalNumBurials;
+            if (area == "BurialMain")
+            {
+                totalNumBurials = context.Burialmain.Count();
+            }
+            else if (area == "BodyAnalysisChart")
+            {
+                totalNumBurials = context.Bodyanalysischart.Count();
+            }
+            else if (area == "Textile")
+            {
+                totalNumBurials = context.Textile.Count();
+            }
+            else if (area == "Structure")
+            {
+                totalNumBurials = context.StructureTextile.Count();
+            }
+            else if (area == "TextileFunction")
+            {
+                totalNumBurials = context.Textilefunction.Count();
+            }
+            else if (area == "TextileColor")
+            {
+                totalNumBurials = context.Color.Count();
+            }
+            else
+            {
+                totalNumBurials = context.Burialmain.Count();
+            }
+
             var x = new BurialsViewModel
             {
                 Burials = context.Burialmain
@@ -69,7 +99,7 @@ namespace INTEXll.Controllers
 
                 PageInfo = new PageInfo
                 {
-                    TotalNumBurials = (area == null ? context.Burialmain.Count() : context.Burialmain.Where(x => x.Area == area).Count()),
+                    TotalNumBurials = context.Burialmain.Count(),
                     BurialsPerPage = pageSize,
                     CurrentPage = pageNum
                 }
@@ -81,33 +111,95 @@ namespace INTEXll.Controllers
         public IActionResult Burials(TFForm tf, BFiltersForm bf, TSForm ts, TextileForm t, TCForm tc, BAC bac, string table, int pageNum = 1)
         {
             ViewBag.SelectedType = table;
+            ViewBag.SelectedPage = pageNum;
             int pageSize = 100;
-            var Burialquery = context.Burialmain.AsQueryable();
+            IQueryable<dynamic> bigQuery = null;
 
-            if (!string.IsNullOrEmpty(bf.SquareNS)) { Burialquery = Burialquery.Where(x => x.Squarenorthsouth == bf.SquareNS); }
+            switch (table)
+            {
+                case "BodyAnalysisChart":
+                    var bodyAnalysisQuery = context.Bodyanalysischart.AsQueryable();
 
-            if (!string.IsNullOrEmpty(bf.NS)) { Burialquery = Burialquery.Where(x => x.Northsouth == bf.NS); }
+                    if (bac.EstimateStature.HasValue) { bodyAnalysisQuery = bodyAnalysisQuery.Where(x => x.Estimatestature == bac.EstimateStature); }
 
-            if (!string.IsNullOrEmpty(bf.SquareEW)) { Burialquery = Burialquery.Where(x => x.Squareeastwest == bf.SquareEW); }
+                    bigQuery = bodyAnalysisQuery;
 
-            if (!string.IsNullOrEmpty(bf.EW)) { Burialquery = Burialquery.Where(x => x.Eastwest == bf.EW); }
+                    break;
 
-            if (!string.IsNullOrEmpty(bf.Area)) { Burialquery = Burialquery.Where(x => x.Area == bf.Area); }
+                case "Textile":
+                    var textileQuery = context.Textile.AsQueryable();
 
-            if (bf.BurialNumber.HasValue) { Burialquery = Burialquery.Where(x => x.Burialnumber == bf.BurialNumber.Value.ToString()); }
+                    if (!string.IsNullOrEmpty(t.Locale)) { textileQuery = textileQuery.Where(x => x.Locale == t.Locale); }
 
-            if (!string.IsNullOrEmpty(bf.HeadDirection)) { Burialquery = Burialquery.Where(x => x.Headdirection == bf.HeadDirection); }
+                    bigQuery = textileQuery;
 
-            if (!string.IsNullOrEmpty(bf.AgeAtDeath)) { Burialquery = Burialquery.Where(x => x.Ageatdeath == bf.AgeAtDeath); }
+                    break;
 
-            if (!string.IsNullOrEmpty(bf.Sex)) { Burialquery = Burialquery.Where(x => x.Sex == bf.Sex); }
+                case "Structure":
+                    var structureQuery = context.Structure.AsQueryable();
 
-            if (!string.IsNullOrEmpty(bf.HairColor)) { Burialquery = Burialquery.Where(x => x.Haircolor == bf.HairColor); }
+                    if (!string.IsNullOrEmpty(ts.TSValue)) { structureQuery = structureQuery.Where(x => x.TSValue == ts.TSValue); }
 
+                    bigQuery = structureQuery;
+
+                    break;
+
+                case "TextileFunction":
+                    var functionQuery = context.Textilefunction.AsQueryable();
+
+                    if (!string.IsNullOrEmpty(tf.Value)) { functionQuery = functionQuery.Where(x => x.Value == tf.Value); }
+
+                    bigQuery = functionQuery;
+
+                    break;
+
+                case "TextileColor":
+                    var colorsQuery = context.Color.AsQueryable();
+
+                    if (!string.IsNullOrEmpty(tc.TCValue)) { colorsQuery = colorsQuery.Where(x => x.Value == tc.TCValue); }
+
+                    bigQuery = colorsQuery;
+
+                    break;
+
+
+                default:
+
+                    var burialQuery = context.Burialmain.AsQueryable();
+
+                    if (!string.IsNullOrEmpty(bf.SquareNS)) { burialQuery = burialQuery.Where(x => x.Squarenorthsouth == bf.SquareNS); }
+
+                    if (!string.IsNullOrEmpty(bf.NS)) { burialQuery = burialQuery.Where(x => x.Northsouth == bf.NS); }
+
+                    if (!string.IsNullOrEmpty(bf.SquareEW)) { burialQuery = burialQuery.Where(x => x.Squareeastwest == bf.SquareEW); }
+
+                    if (!string.IsNullOrEmpty(bf.EW)) { burialQuery = burialQuery.Where(x => x.Eastwest == bf.EW); }
+
+                    if (!string.IsNullOrEmpty(bf.Area)) { burialQuery = burialQuery.Where(x => x.Area == bf.Area); }
+
+                    if (bf.BurialNumber.HasValue) { burialQuery = burialQuery.Where(x => x.Burialnumber == bf.BurialNumber.Value.ToString()); }
+
+                    if (!string.IsNullOrEmpty(bf.HeadDirection)) { burialQuery = burialQuery.Where(x => x.Headdirection == bf.HeadDirection); }
+
+                    if (!string.IsNullOrEmpty(bf.AgeAtDeath)) { burialQuery = burialQuery.Where(x => x.Ageatdeath == bf.AgeAtDeath); }
+
+                    if (!string.IsNullOrEmpty(bf.Sex)) { burialQuery = burialQuery.Where(x => x.Sex == bf.Sex); }
+
+                    if (!string.IsNullOrEmpty(bf.HairColor)) { burialQuery = burialQuery.Where(x => x.Haircolor == bf.HairColor); }
+
+                    bigQuery = burialQuery;
+
+                    break;
+            }
 
             var viewModel = new BurialsViewModel
             {
-                Burials = Burialquery.OrderBy(x => x.Id),
+                Burials = bigQuery.OfType<Burialmain>().OrderBy(x => x.Id).Skip((pageNum - 1) * pageSize).Take(pageSize),
+                Bodyanalysischarts = bigQuery.OfType<Bodyanalysischart>().OrderBy(x => x.Id),
+                Textiles = bigQuery.OfType<Textile>().OrderBy(x => x.Id),
+                Structure = bigQuery.OfType<Structure>().OrderBy(x => x.Id),
+                TextileColors = bigQuery.OfType<Color>().OrderBy(x => x.Id),
+                TextileFunctions = bigQuery.OfType<Textilefunction>().OrderBy(x => x.Id),
                 PageInfo = new PageInfo
                 {
                     TotalNumBurials = context.Burialmain.Count() == null ? 0 : context.Burialmain.Count(),
@@ -168,8 +260,6 @@ namespace INTEXll.Controllers
             };
             return View(x);
         }
-
-
 
         public IActionResult Admin()
         {

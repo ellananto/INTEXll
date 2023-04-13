@@ -7,6 +7,6 @@ namespace INTEXll.Models
 {
     public class TCForm
     {
-        public string Value { get; set; }
+        public string TCValue { get; set; }
     }
 }

@@ -57,26 +57,23 @@
                 <partial name="_LoginPartial" />
             </ul>
         </nav><!-- .navbar -->
-        <a href="#book-a-table" class="book-a-table-btn scrollto d-none d-lg-flex">Book a table</a>
     </div>
 </header>
 <body>
-    <div class="">
         <partial name="_CookieConsentPartial" />
-        <main role="main" class="pb-3"  style="padding-top: 100px">
+        <main role="main" class="pb-3" style="padding-top: 100px">
             @RenderBody()
         </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - INTEXll - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    @RenderSection("Scripts", required: false)
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2023 - INTEXll - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        @RenderSection("Scripts", required: false)
 </body>
 </html>
