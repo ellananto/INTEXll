@@ -97,7 +97,7 @@ namespace INTEXll
             app.UseRouting();
 
             app.UseAuthentication();
-            //app.UseAuthorization();
+            app.UseAuthorization();
             //app.Use(async (context, next) =>
             //{
             //    context.Response.Headers.Add("Content-Security-Policy", "frame-src 'self'; img-src 'self'; font-src 'self'; ");
