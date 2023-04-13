@@ -2,205 +2,248 @@
 <body>
     <section id="about" class="about" style="margin-top: -100px; margin-bottom: -20px; width: 100%; background-size: cover;">
         <div class="container mt-5">
-            <div class="row m-1 p-1">
-                <h1 class="text-center" style="color:black">Burial Records</h1>
-                <p style="color:black">The data displayed below are records of various categories of information gathered about a collection of burials that have been uncovered. As you look through the data, you can filter in various ways to look for patterns, and click on each record for more information!</p>
-                <h3 style="color:black">Filter by Table</h3>
-                <div id="types" class="col-3">
-                    <div id="types" class="col-3">
-                        <a asp-controller="Home" asp-action="Burials" asp-route-area="BurialMain" asp-route-pageNum="1"
-                           class="btn @(ViewBag.SelectedType == "BurialMain" ? "btn-success" : "btn-outline-light")">
-                            Burial Main
-                        </a><br />
-                        <a asp-controller="Home" asp-action="Burials" asp-route-area="Textile" asp-route-pageNum="1"
-                           class="btn @(ViewBag.SelectedType == "Textile" ? "btn-success" : "btn-outline-light")">
-                            Textile
-                        </a><br />
-                        <a asp-controller="Home" asp-action="Burials" asp-route-area="TextileColor" asp-route-pageNum="1"
-                           class="btn @(ViewBag.SelectedType == "TextileColor" ? "btn-success" : "btn-outline-light")">
-                            Textile Color
-                        </a><br />
-                        <a asp-controller="Home" asp-action="Burials" asp-route-area="Structure" asp-route-pageNum="1"
-                           class="btn @(ViewBag.SelectedType == "Structure" ? "btn-success" : "btn-outline-light")">
-                            Textile Structure
-                        </a><br />
-                        <a asp-controller="Home" asp-action="Burials" asp-route-area="TextileFunction" asp-route-pageNum="1"
-                           class="btn @(ViewBag.SelectedType == "TextileFunction" ? "btn-success" : "btn-outline-light")">
-                            Textile Function
-                        </a><br />
-                        <a asp-controller="Home" asp-action="Burials" asp-route-area="BodyAnalysisChart" asp-route-pageNum="1"
-                           class="btn @(ViewBag.SelectedType == "BodyAnalysisChart" ? "btn-success" : "btn-outline-light")">
-                            Body Analysis Chart
-                        </a><br />
-                    </div>
-                    <br />
-                    <h3 style="color:black">Filter by Attribute</h3>
-                    <div id="filters">
-                        @if (ViewBag.SelectedType == "BurialMain")
-                        {
-                            <form method="post" asp-controller="Home" asp-action="Burials" asp-route-table="BurialMain" asp-route-pageNum="1">
-                                <div class="container">
-                                    <div class="row">
-
-                                        <div class="form-group col">
-                                            <label for="SquareNorthSouthInput" style="color:white">North/South Square</label>
-                                            <input type="text" class="form-control" id="SquareNorthSouthInput" name="SquareNS" placeholder="190">
-                                        </div>
-                                        <div class="form-group col">
-                                            <label for="NorthSouthInput" style="color:white">North/South Location</label>
-                                            <input type="text" class="form-control" id="NorthSouthInput" placeholder="N" name="NS">
-                                        </div>
-                                        <div class="form-group col">
-                                            <label for="SquareEastWestInput" style="color:white">East/West Square</label>
-                                            <input type="text" class="form-control" id="SquareEastWestInput" placeholder="30" name="SquareEW">
-                                        </div>
-                                        <div class="form-group col">
-                                            <label for="EastWestInput" style="color:white">East/West Location</label>
-                                            <input type="text" class="form-control" id="EastWestInput" placeholder="E" name="EW">
-                                        </div>
-                                        <div class="form-group col">
-                                            <label for="AreaInput" style="color:white">Area</label>
-                                            <input type="text" class="form-control" id="AreaInput" placeholder="NE" name="Area">
-                                        </div>
-                                        <div class="form-group col">
-                                            <label for="BurialNumberInput" style="color:white">Burial Number</label>
-                                            <input type="number" class="form-control" id="BurialNumberInput" placeholder="60" name="BurialNumber">
-                                        </div>
-
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col">
-                                            <label for="HeadDirectionInput" style="color:white">Head Direction</label>
-                                            <input type="text" class="form-control" id="HeadDirectionInput" placeholder="W" name="HeadDirection">
-                                        </div>
-                                        <div class="form-group col">
-                                            <label for="AgeAtDeathInput" style="color:white">Age at Death</label>
-                                            <input type="text" class="form-control" id="AgeAtDeathInput" placeholder="C" name="AgeAtDeath">
-                                        </div>
-                                        <div class="form-group col">
-                                            <label for="HeadDirectionInput" style="color:white">Sex</label>
-                                            <input type="text" class="form-control" id="HeadDirectionInput" placeholder="F" name="Sex">
-                                        </div>
-                                        <div class="form-group col">
-                                            <label for="HeadDirectionInput" style="color:white">Hair Color</label>
-                                            <input type="text" class="form-control" id="HeadDirectionInput" placeholder="B" name="HairColor">
-                                        </div>
-                                    </div>
-
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </div>
-                            </form>
-                        }
-                        else if (ViewBag.SelectedType == "BodyAnalysisChart")
-                        {
-                            <form method="post" asp-action="Burials" asp-route-table="BodyAnalysisChart" asp-route-pageNum="1">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="form-group col">
-                                            <label for="EstimateStatureInput" style="color:white">Estimate Stature</label>
-                                            <input type="text" class="form-control" id="EstimateStatureInput" placeholder="190" name="EstimateStature">
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                    </div>
-                                </div>
-                            </form>
-                        }
-                        else if (ViewBag.SelectedType == "Textile")
-                        {
-                            <form method="post" asp-action="Burials" asp-route-table="Textile" asp-route-pageNum="1">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="form-group col">
-                                            <label for="Locale" style="color:white">Locale</label>
-                                            <input type="text" class="form-control" id="Locale" placeholder="150/160N 0/10W" name="Locale">
-                                        </div>
-                                        <br />
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                    </div>
-                                </div>
-                            </form>
-                        }
-                        else if (ViewBag.SelectedType == "TextileFunction")
-                        {
-                            <form method="post" asp-action="Burials" asp-route-table="TextileFunction" asp-route-pageNum="1">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="form-group col">
-                                            <label for="Value" style="color:white">Value</label>
-                                            <input type="text" class="form-control" id="Value" placeholder="Ribbon- Torn Strip" name="Value">
-                                        </div>
-                                        <br />
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                    </div>
-                                </div>
-                            </form>
-                        }
-                        else if (ViewBag.SelectedType == "Structure")
-                        {
-                            <form method="post" asp-action="Burials" asp-route-table="Structure" asp-route-pageNum="1">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="form-group col">
-                                            <label for="Value" style="color:white">Value</label>
-                                            <input type="text" class="form-control" id="Value" placeholder="10" name="Value">
-                                        </div>
-                                        <br />
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                    </div>
-                                </div>
-                            </form>
-                        }
-                        else if (ViewBag.SelectedType == "TextileColor")
-                        {
-                            <form method="post" asp-action="TextileColor" asp-route-table="TextileColor" asp-route-pageNum="1">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="form-group col">
-                                            <label for="Value" style="color:white">Value</label>
-                                            <input type="text" class="form-control" id="Value" placeholder="Undyed" name="Value">
-                                        </div>
-                                        <br />
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                    </div>
-                                </div>
-                            </form>
-                        }
-                    </div>
-                </div>
+            <br />
+            <div class="row">
                 <div class="col-9">
+                    <p style="color:white;"></p>
                     <div>
-                        @if (ViewBag.SelectedType == "BurialMain")
-                        {
-                            <partial name="_BurialMainTable" />
-                        }
-                        else if (ViewBag.SelectedType == "BodyAnalysisChart")
-                        {
-                            <partial name="_BodyAnalysisChartTable" />
-                        }
-                        else if (ViewBag.SelectedType == "Textile")
-                        {
-                            <partial name="_TextileTable" />
-                        }
-                        else if (ViewBag.SelectedType == "Structure")
-                        {
-                            <partial name="_TextileStructureTable" />
-                        }
-                        else if (ViewBag.SelectedType == "TextileColor")
-                        {
+                        <div class="row m-1 p-1" id="title">
+                            <div class="col">
+                                @*Table Title/Description (Based on Selected Table)*@
+                                <div class="text-center">
+                                    @if (ViewBag.SelectedType == "BurialMain")
+                                    {
+                                        <h1 style="color:white; font-weight:bold;" class="display-4">Burials</h1>
+                                    }
+                                    else if (ViewBag.SelectedType == "BodyAnalysisChart")
+                                    {
+                                        <h1 style="color: white; font-weight: bold;" class="display-4">Body Analysis</h1>
+                                    }
+                                    else if (ViewBag.SelectedType == "Textile")
+                                    {
+                                        <h1 style="color: white; font-weight: bold;" class="display-4">Textiles</h1>
+                                    }
+                                    else if (ViewBag.SelectedType == "Structure")
+                                    {
+                                        <h1 style="color: white; font-weight: bold;" class="display-4">Textile Structures</h1>
+                                    }
+                                    else if (ViewBag.SelectedType == "TextileFunction")
+                                    {
+                                        <h1 style="color: white; font-weight: bold;" class="display-4">Textile Functions</h1>
+                                    }
+                                    else if (ViewBag.SelectedType == "TextileColor")
+                                    {
+                                        <h1 style="color: white; font-weight: bold;" class="display-4">Textile Colors</h1>
+                                    }
+                                    else
+                                    {
+                                        <h1 style="color:white; font-weight:bold;" class="display-4">Burials</h1>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <p style="color:white;">The data displayed below are records of various categories of information gathered about a collection of burials that have been uncovered. As you look through the data, you can filter in various ways to look for patterns, and click on each record for more information!</p>
+                            <h3 style="color:white;" >Filter by Table</h3>
+                            <div id="types" class="col-3">
+                                <div id="types" class="col-3">
+                                    <a asp-controller="Home" asp-action="Burials" asp-route-area="BurialMain" asp-route-pageNum="1"
+                                       class="btn @(ViewBag.SelectedType == "BurialMain" ? "btn-success" : "btn-outline-light")">
+                                        Burial Main
+                                    </a><br />
+                                    <a asp-controller="Home" asp-action="Burials" asp-route-area="Textile" asp-route-pageNum="1"
+                                       class="btn @(ViewBag.SelectedType == "Textile" ? "btn-success" : "btn-outline-light")">
+                                        Textile
+                                    </a><br />
+                                    <a asp-controller="Home" asp-action="Burials" asp-route-area="TextileColor" asp-route-pageNum="1"
+                                       class="btn @(ViewBag.SelectedType == "TextileColor" ? "btn-success" : "btn-outline-light")">
+                                        Textile Color
+                                    </a><br />
+                                    <a asp-controller="Home" asp-action="Burials" asp-route-area="Structure" asp-route-pageNum="1"
+                                       class="btn @(ViewBag.SelectedType == "Structure" ? "btn-success" : "btn-outline-light")">
+                                        Textile Structure
+                                    </a><br />
+                                    <a asp-controller="Home" asp-action="Burials" asp-route-area="TextileFunction" asp-route-pageNum="1"
+                                       class="btn @(ViewBag.SelectedType == "TextileFunction" ? "btn-success" : "btn-outline-light")">
+                                        Textile Function
+                                    </a><br />
+                                    <a asp-controller="Home" asp-action="Burials" asp-route-area="BodyAnalysisChart" asp-route-pageNum="1"
+                                       class="btn @(ViewBag.SelectedType == "BodyAnalysisChart" ? "btn-success" : "btn-outline-light")">
+                                        Body Analysis Chart
+                                    </a><br />
+                                </div>
+                                <br />
+                                <h3 style="color:white;">Filter by Attribute</h3>
+                                <div id="filters">
+                                    @if (ViewBag.SelectedType == "BurialMain")
+                                    {
+                                        <form method="post" asp-controller="Home" asp-action="Burials" asp-route-table="BurialMain" asp-route-pageNum="1">
+                                            <div class="container">
+                                                <div class="row">
 
-                            <partial name="_ColorTable" />
-                        }
-                        else if (ViewBag.SelectedType == "TextileFunction")
-                        {
-                            <partial name="_TextileFunctionTable" />
-                        }
-                        else
-                        {
-                            <partial name="_BurialMainTable" />
-                        }
+                                                    <div class="form-group col">
+                                                        <label for="SquareNorthSouthInput" style="color:white">North/South Square</label>
+                                                        <input type="text" class="form-control" id="SquareNorthSouthInput" name="SquareNS" placeholder="190">
+                                                    </div>
+                                                    <div class="form-group col">
+                                                        <label for="NorthSouthInput" style="color:white">North/South Location</label>
+                                                        <input type="text" class="form-control" id="NorthSouthInput" placeholder="N" name="NS">
+                                                    </div>
+                                                    <div class="form-group col">
+                                                        <label for="SquareEastWestInput" style="color:white">East/West Square</label>
+                                                        <input type="text" class="form-control" id="SquareEastWestInput" placeholder="30" name="SquareEW">
+                                                    </div>
+                                                    <div class="form-group col">
+                                                        <label for="EastWestInput" style="color:white">East/West Location</label>
+                                                        <input type="text" class="form-control" id="EastWestInput" placeholder="E" name="EW">
+                                                    </div>
+                                                    <div class="form-group col">
+                                                        <label for="AreaInput" style="color:white">Area</label>
+                                                        <input type="text" class="form-control" id="AreaInput" placeholder="NE" name="Area">
+                                                    </div>
+                                                    <div class="form-group col">
+                                                        <label for="BurialNumberInput" style="color:white">Burial Number</label>
+                                                        <input type="number" class="form-control" id="BurialNumberInput" placeholder="60" name="BurialNumber">
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group col">
+                                                        <label for="HeadDirectionInput" style="color:white">Head Direction</label>
+                                                        <input type="text" class="form-control" id="HeadDirectionInput" placeholder="W" name="HeadDirection">
+                                                    </div>
+                                                    <div class="form-group col">
+                                                        <label for="AgeAtDeathInput" style="color:white">Age at Death</label>
+                                                        <input type="text" class="form-control" id="AgeAtDeathInput" placeholder="C" name="AgeAtDeath">
+                                                    </div>
+                                                    <div class="form-group col">
+                                                        <label for="HeadDirectionInput" style="color:white">Sex</label>
+                                                        <input type="text" class="form-control" id="HeadDirectionInput" placeholder="F" name="Sex">
+                                                    </div>
+                                                    <div class="form-group col">
+                                                        <label for="HeadDirectionInput" style="color:white">Hair Color</label>
+                                                        <input type="text" class="form-control" id="HeadDirectionInput" placeholder="B" name="HairColor">
+                                                    </div>
+                                                </div>
+
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </form>
+                                    }
+                                    else if (ViewBag.SelectedType == "BodyAnalysisChart")
+                                    {
+                                        <form method="post" asp-action="Burials" asp-route-table="BodyAnalysisChart" asp-route-pageNum="1">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="form-group col">
+                                                        <label for="EstimateStatureInput" style="color:white">Estimate Stature</label>
+                                                        <input type="text" class="form-control" id="EstimateStatureInput" placeholder="190" name="EstimateStature">
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    }
+                                    else if (ViewBag.SelectedType == "Textile")
+                                    {
+                                        <form method="post" asp-action="Burials" asp-route-table="Textile" asp-route-pageNum="1">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="form-group col">
+                                                        <label for="Locale" style="color:white">Locale</label>
+                                                        <input type="text" class="form-control" id="Locale" placeholder="150/160N 0/10W" name="Locale">
+                                                    </div>
+                                                    <br />
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    }
+                                    else if (ViewBag.SelectedType == "TextileFunction")
+                                    {
+                                        <form method="post" asp-action="Burials" asp-route-table="TextileFunction" asp-route-pageNum="1">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="form-group col">
+                                                        <label for="Value" style="color:white">Value</label>
+                                                        <input type="text" class="form-control" id="Value" placeholder="Ribbon- Torn Strip" name="Value">
+                                                    </div>
+                                                    <br />
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    }
+                                    else if (ViewBag.SelectedType == "Structure")
+                                    {
+                                        <form method="post" asp-action="Burials" asp-route-table="Structure" asp-route-pageNum="1">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="form-group col">
+                                                        <label for="Value" style="color:white">Value</label>
+                                                        <input type="text" class="form-control" id="Value" placeholder="10" name="Value">
+                                                    </div>
+                                                    <br />
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    }
+                                    else if (ViewBag.SelectedType == "TextileColor")
+                                    {
+                                        <form method="post" asp-action="TextileColor" asp-route-table="TextileColor" asp-route-pageNum="1">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="form-group col">
+                                                        <label for="Value" style="color:white">Value</label>
+                                                        <input type="text" class="form-control" id="Value" placeholder="Undyed" name="Value">
+                                                    </div>
+                                                    <br />
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-9">
+                                <div>
+                                    @if (ViewBag.SelectedType == "BurialMain")
+                                    {
+                                        <partial name="_BurialMainTable" />
+                                    }
+                                    else if (ViewBag.SelectedType == "BodyAnalysisChart")
+                                    {
+                                        <partial name="_BodyAnalysisChartTable" />
+                                    }
+                                    else if (ViewBag.SelectedType == "Textile")
+                                    {
+                                        <partial name="_TextileTable" />
+                                    }
+                                    else if (ViewBag.SelectedType == "Structure")
+                                    {
+                                        <partial name="_TextileStructureTable" />
+                                    }
+                                    else if (ViewBag.SelectedType == "TextileColor")
+                                    {
+
+                                        <partial name="_ColorTable" />
+                                    }
+                                    else if (ViewBag.SelectedType == "TextileFunction")
+                                    {
+                                        <partial name="_TextileFunctionTable" />
+                                    }
+                                    else
+                                    {
+                                        <partial name="_BurialMainTable" />
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div page-model="" page-blah="@Model.PageInfo" page-action="Burials" page-class="btn" page-class-normal="btn-outline-light" page-class-selected="btn-primary" page-class-enabled="true" class="btn-group pull-right m-1"></div>
                     </div>
                 </div>
-            </div>        <div page-model="" page-blah="@Model.PageInfo" page-action="Burials" page-class="btn" page-class-normal="btn-outline-light" page-class-selected="btn-primary" page-class-enabled="true" class="btn-group pull-right m-1"></div>
-</div>
-</section>
+            </div>
+        </div>
+    </section>
 </body>

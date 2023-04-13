@@ -1,114 +1,92 @@
-﻿
-@{
+﻿@{
     var prediction = ViewBag.Prediction as Prediction;
 }
-<div class="container mt-5">
-    <h1>Predict Wrapping of Burial</h1>
-    <br />
-    <p>The more data you enter the more accurate the prediction will be:</p>
-
-    <form method="post" asp-action="Supervised" asp-controller="Home" class="php-email-form .form-group">
-        <div class="form-group">
-
-            <label for="HeadDirection_E">Is Head Direction East? (If yes, type a 1)</label>
-            <input type="number" name="HeadDirection_E" /><br />
-
-            <label for="HeadDirection_W">Is Head Direction West? (If yes, type a 1)</label>
-            <input type="number" name="HeadDirection_W" /><br />
-
-            <label for="NorthSouth_N">Is it North? (If yes, type a 1)</label>
-            <input type="number" name="NorthSouth_N" /><br />
-
-
-            <label for="EastWest_E">Is it East? (If yes, type a 1)</label>
-            <input type="number" name="EastWest_E" /><br />
-
-
-            <label for="EastWest_W">Is it West? (If yes, type a 1)</label>
-            <input type="number" name="EastWest_W" /><br />
-
-
-            <label for="AdultSubAdult_A">Is it an Adult? (If yes, type a 1)</label>
-            <input type="number" name="AdultSubAdult_A" /><br />
-
-            <label for="AdultSubAdult_C">Is it an Child? (If yes, type a 1)</label>
-            <input type="number" name="AdultSubAdult_C" /><br />
-
-            <label for="SamplesCollected_True">Were samples collected? (If yes, type a 1)</label>
-            <input type="number" name="SamplesCollected_True" /> <br />
-
-            <label for="SamplesCollected_False">Were samples not collected? (If yes, type a 1)</label>
-            <input type="number" name="SamplesCollected_False" /><br />
-
-            <label for="SamplesCollected_Other">If samples were simply collected or not, type 1 here.</label>
-            <input type="number" name="SamplesCollected_Other" /><br />
-
-            <label for="Area_NE">Was the area Northeast? (If yes, type a 1)</label>
-            <input type="number" name="Area_NE" /><br /><br />
-
-            <label for="Area_NW">Was the area Northwest? (If yes, type a 1)</label>
-            <input type="number" name="Area_NW" /><br />
-
-            <label for="Area_SE">Was the area Southeast? (If yes, type a 1)</label>
-            <input type="number" name="Area_SE" /><br />
-
-            <label for="Area_SW">Was the area Southwest? (If yes, type a 1)</label>
-            <input type="number" name="Area_SW" /><br />
-
-            <label for="AgeAtDeath_A">Was the age at death an adult? (If yes, type a 1)</label>
-            <input type="number" name="AgeAtDeath_A" /><br />
-
-            <label for="AgeAtDeath_C">Was the age at death a child? (If yes, type a 1)</label>
-            <input type="number" name="AgeAtDeath_C" /><br />
-
-            <label for="AgeAtDeath_I">Was the age at death an infant? (If yes, type a 1)</label>
-            <input type="number" name="AgeAtDeath_I" /><br />
-
-            <label for="AgeAtDeath_N">Was the age at death a newborn? (If yes, type a 1)</label>
-            <input type="number" name="AgeAtDeath_N" /><br />
-
-            <label for="Depth">Input Depth:</label>
-            <input type="number" class="form-control" name="Depth" step="0.1" /><br />
-
-            <label for="SquareNorthSouth">Input Square NorthSouth:</label>
-            <input type="number" class="form-control" name="SquareNorthSouth" /><br />
-
-            <label for="SquareEastWest">Input Square EastWest:</label>
-            <input type="number" class="form-control" name="SquareEastWest" /><br />
-
-            <label for="SouthToHead">Input South to Head:</label>
-            <input type="number" class="form-control" name="SouthToHead" step="0.1" /><br />
-
-            <label for="WestToHead">Input West to Head:</label>
-            <input type="number" class="form-control" name="WestToHead" step="0.1" /><br />
-
-            <label for="SouthToFeet">Input South to Feet:</label>
-            <input type="number" class="form-control" name="SouthToFeet" step="0.1" /> <br />
-
-            <label for="WesttToFeet">Input West to Feet:</label>
-            <input type="number" class="form-control" name="WestToFeet" step="0.1" /> <br />
-
-            <label for="FieldbookPage">Input Field Book Page:</label>
-            <input type="number" class="form-control" name="FieldbookPage" /><br />
-
-            <label for="Length">Input Length:</label>
-            <input type="number" class="form-control" name="Length" step="0.1" /><br />
-
-            <label for="BurialNumber">Input Burial Number:</label>
-            <input type="number" class="form-control" name="BurialNumber" /><br />
-
-            <label for="FieldbookExcavationYear">Input Field Book Excavation Year:</label>
-            <input type="number" class="form-control" name="FieldbookExcavationYear" /><br />
-        </div>
-        <button type="submit" class="btn btn-primary">Make Prediction</button>
-    </form>
-
-    @if (prediction != null)
-    {
-        <p>Your Prediction is: @prediction.PredictedValue</p>
-    }
-    else
-    {
-        <p>Your Prediction didn't work lol</p>
-    }
+<center>
+    <div class="container">
+        <h1>Predict Wrapping of Burial</h1>
+        <p>The more data you enter the more accurate the prediction will be.</p>
+        @if (prediction != null)
+        {
+            <h4>Your Prediction is: @prediction.PredictedValue</h4>
+        }
+        else
+        {
+            <p></p>
+        }
+        <form method="post" asp-action="Supervised" asp-controller="Home">
+            <div class="form-group">
+                <label for="HeadDirection">Is Head Direction East or West?</label>
+                <select class="form-control" name="HeadDirection_E">
+                    <option value="">---</option>
+                    <option value="0">West</option>
+                    <option value="1">East</option>
+                </select>
+                <label for="NorthSouth_N">Input NorthSouth:</label>
+                <select class="form-control" name="NorthSouth_N">
+                    <option value="">---</option>
+                    <option value="N">North</option>
+                    <option value="S">South</option>
+                </select>
+                <label for="EastWest_E">Input EastWest:</label>
+                <select class="form-control" name="EastWest_E">
+                    <option value="">---</option>
+                    <option value="1">East</option>
+                    <option value="0">West</option>
+                </select>
+                <label for="AdultSubAdult_A">Input AdultSubadult:</label>
+                <select class="form-control" name="AdultSubAdult_A">
+                    <option value="">---</option>
+                    <option value="1">Adult</option>
+                    <option value="0">Child</option>
+                </select>
+                <label for="SamplesCollected_True">Input Sample Collected?:</label>
+                <select class="form-control" name="SamplesCollected_True">
+                    <option value="0">---</option>
+                    <option value="3">Other</option>
+                    <option value="2">False</option>
+                    <option value="1">True</option>
+                </select>
+                <label for="Area_NE">Input Area:</label>
+                <select class="form-control" name="Area_NE">
+                    <option value="">---</option>
+                    <option value="4">South East</option>
+                    <option value="3">South West</option>
+                    <option value="1">North East</option>
+                    <option value="2">North West</option>
+                </select>
+                <label for="AgeAtDeath_A">Input Age at Death:</label>
+                <select class="form-control" name="AgeAtDeath_A">
+                    <option value="">---</option>
+                    <option value="1">Adult</option>
+                    <option value="2">Child</option>
+                    <option value="3">Infant</option>
+                    <option value="4">Newborn</option>
+                    <option value="5">Other</option>
+                </select>
+                <label for="Depth">Input Depth:</label>
+                <input type="number" class="form-control" name="Depth" step="0.1" />
+                <label for="SquareNorthSouth">Input Square NorthSouth:</label>
+                <input type="number" class="form-control" name="SquareNorthSouth" />
+                <label for="SquareEastWest">Input Square EastWest:</label>
+                <input type="number" class="form-control" name="SquareEastWest" />
+                <label for="SouthToHead">Input South to Head:</label>
+                <input type="number" class="form-control" name="SouthToHead" step="0.1" />
+                <label for="WestToHead">Input West to Head:</label>
+                <input type="number" class="form-control" name="WestToHead" step="0.1" />
+                <label for="SouthToFeet">Input South to Feet:</label>
+                <input type="number" class="form-control" name="SouthToFeet" step="0.1" />
+                <label for="WesttToFeet">Input West to Feet:</label>
+                <input type="number" class="form-control" name="WestToFeet" step="0.1" />
+                <label for="FieldbookPage">Input Field Book Page:</label>
+                <input type="number" class="form-control" name="FieldbookPage" />
+                <label for="Length">Input Length:</label>
+                <input type="number" class="form-control" name="Length" step="0.1" />
+                <label for="BurialNumber">Input Burial Number:</label>
+                <input type="number" class="form-control" name="BurialNumber" />
+                <label for="FieldbookExcavationYear">Input Field Book Excavation Year:</label>
+                <input type="number" class="form-control" name="FieldbookExcavationYear" />
+            </div>
+            <button type="submit" class="btn btn-primary">Make Prediction</button>
+        </form>
     </div>
+</center>
