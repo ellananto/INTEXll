@@ -14,13 +14,18 @@
     </p>
     <script>
         var currentImage = 1;
+        var currentImage2 = 1;
         var image1 = new Image();
         var image2 = new Image();
+        var image3 = new Image();
+        var image4 = new Image();
         image1.src = "https://localhost:44339/assets/img/wrapping_1.png";
         image2.src = "https://localhost:44339/assets/img/wrapping_2.png";
+        image3.src = "https://localhost:44339/assets/img/Preservation_1.png"
+        image4.src = "https://localhost:44339/assets/img/Preservation_2.png"
 
         function changeImage() {
-            var img = document.getElementById('image');
+            var img = document.getElementById('image_wrapping');
             if (currentImage == 1) {
                 img.src = "https://localhost:44339/assets/img/wrapping_1.png";
                 currentImage = 2;
@@ -30,9 +35,21 @@
             }
         }
 
+        function changeImage2() {
+            var img = document.getElementById('image_preservation');
+            if (currentImage2 == 1) {
+                img.src = "https://localhost:44339/assets/img/Preservation_1.png";
+                currentImage2 = 2;
+            } else {
+                img.src = "https://localhost:44339/assets/img/Preservation_2.png";
+                currentImage2 = 1;
+            }
+        }
+
         setInterval(changeImage, 1000);
+        setInterval(changeImage2, 1000);
     </script>
-    <img id="image" src="https://localhost:44339/assets/img/wrapping_1.png" />
+    <img id="image_wrapping" src="https://localhost:44339/assets/img/wrapping_1.png" />
     <br /> <br /> <br /> <br />
     <div style="background-color: darkgray; height: 1px; width: 90%; margin: 0 auto;"></div>
     <br /> <br /> <br />
@@ -46,4 +63,15 @@
     </p>
     <br />
     <img src="~/assets/img/Screenshot 2023-04-12 145729.png" />
+    <br /> <br /> <br /> <br />
+    <div style="background-color: darkgray; height: 1px; width: 90%; margin: 0 auto;"></div>
+    <br /> <br /> <br />
+    <p>
+        This graph ,similarly to the other 3D model, shows the location and the preservation of the mummy. This graph shows the poorly
+        preserved mummies as the yellow dots and the others as the purple dots. This graph shows a strong correlation between poorly
+        preserved mummies and square east west. All of the poorly preserved mummies in this sample are buried on the East side. This 
+        could imply that the egyptions used a different preservation technique for the burials in that location or that something in
+        the soil of that area could have affected the way that the mummies were preserved.
+    </p>
+    <img id="image_preservation" src="https://localhost:44339/assets/img/Preservation_1.png" />
 </div>
