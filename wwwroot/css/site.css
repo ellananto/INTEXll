@@ -69,3 +69,49 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+.cookie-consent-popup {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(248, 248, 248, 0.8); /* Use rgba to set the background color with an alpha value for transparency */
+    backdrop-filter: blur(5px);
+    padding: 10px;
+    text-align: center;
+    display: none; /* Hide the popup by default */
+    z-index: 999; /* Set a high z-index to ensure the popup is displayed on top of other elements */
+}
+
+.cookie-consent-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 25vh; /* Set the height to one tenth of the viewport height */
+    max-width: 400px; /* Limit the width of the popup */
+    margin: 0 auto; /* Center the popup horizontally */
+}
+
+    .cookie-consent-content p {
+        margin: 0;
+    }
+
+.cookie-consent-accept {
+    margin-top: 5px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.cookie-consent-learn-more {
+    display: inline-block;
+    margin-top: 5px;
+    /*    color: #007BFF;*/
+}
+
+.custom-container {
+    padding-left: 25px;
+    padding-right: 25px;
+}

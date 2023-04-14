@@ -18,16 +18,19 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using INTEXll.Models.RoleModel;
 using Microsoft.ML.OnnxRuntime;
+using System.IO;
 
 namespace INTEXll
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
+            _env = env;
         }
-
+        private readonly IWebHostEnvironment _env;
+        
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -37,7 +40,7 @@ namespace INTEXll
             var connectionstring = Configuration.GetConnectionString("Database1Connection");
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(
-                    Configuration.GetConnectionString("Database1Connection")));
+                    Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<burialContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("Database1Connection")));
 
@@ -46,11 +49,9 @@ namespace INTEXll
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddSingleton<InferenceSession>(
-              new InferenceSession("Models/modelagain.onnx")
+              new InferenceSession(Path.Combine(_env.ContentRootPath, "wwwroot", "modelagain.onnx"))
             );
 
-            services.AddControllersWithViews();
-            services.AddRazorPages();
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential 
@@ -59,6 +60,10 @@ namespace INTEXll
                 // requires using Microsoft.AspNetCore.Http;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
+            services.AddControllersWithViews();
+            services.AddRazorPages();
+
             services.Configure<IdentityOptions>(options =>
             {
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1);
@@ -96,13 +101,20 @@ namespace INTEXll
             app.UseCookiePolicy();
             app.UseRouting();
 
+
             app.UseAuthentication();
-            //app.UseAuthorization();
-            //app.Use(async (context, next) =>
-            //{
-            //    context.Response.Headers.Add("Content-Security-Policy", "frame-src 'self'; img-src 'self'; font-src 'self'; ");
-            //    await next();
-            //});
+            app.UseAuthorization();
+            app.Use(async (context, next) => {
+                context.Response.Headers.Add("Content-Security-Policy",
+                    "default-src 'self'; " +
+                    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://code.jquery.com https://cdn.jsdelivr.net; " +
+                    "style-src 'self' 'unsafe-inline'; " +
+                    "font-src 'self' data:; " +
+                    "img-src 'self' data:; " +
+                    "frame-src 'self'");
+
+                await next();
+            });
             app.UseEndpoints(endpoints =>
             {
                 //endpoints.MapControllerRoute("id", "{controller}/{action}/{id?}", new { Controller = "Home", action = "MoreInfo" });

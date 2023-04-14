@@ -1,25 +1,29 @@
 ﻿@using Microsoft.AspNetCore.Http.Features
 
-@{
-    var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
-    var showBanner = !consentFeature?.CanTrack ?? false;
-    var cookieString = consentFeature?.CreateConsentCookie();
-}
+@{ var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
+                var showBanner = !consentFeature?.CanTrack ?? false;
+                var cookieString = consentFeature?.CreateConsentCookie(); }
 
 @if (showBanner)
 {
-    <div id="cookieConsent" class="alert alert-info alert-dismissible fade show" role="alert">
-        Use this space to summarize your privacy and cookie use policy. <a asp-page="/Privacy">Learn More</a>.
-        <button type="button" class="accept-policy close" data-dismiss="alert" aria-label="Close" data-cookie-string="@cookieString">
-            <span aria-hidden="true">Accept</span>
-        </button>
+
+<div id="cookieConsent" class="cookie-consent-popup">
+    <div class="cookie-consent-content">
+        <div style="width: 100vw; margin-right: 35px;">
+            <button type="button" class="close ml-auto" data-dismiss="alert" aria-label="Close" data-cookie-string="@cookieString">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <p>This website uses cookies to ensure you get the best experience on our website. By using our site, you acknowledge that you have read and understand our <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy Policy</a> and <a asp-area="" asp-controller="Home" asp-action="Privacy">Cookie Policy</a>.</p>
+        <button id="cookie-consent-ok" class="cookie-consent-ok btn btn-primary mt-3">Accept</button>
+        <a href="https://gdpr.eu/cookies/" class="cookie-consent-learn-more" target="_blank">Learn More</a>
     </div>
-    <script>
-        (function () {
-            var button = document.querySelector("#cookieConsent button[data-cookie-string]");
-            button.addEventListener("click", function (event) {
-                document.cookie = button.dataset.cookieString;
-            }, false);
-        })();
-    </script>
-}
+</div>
+                <script>
+                    (function () {
+                        var button = document.querySelector("#cookieConsent button[data-cookie-string]");
+                        button.addEventListener("click", function (event) {
+                            document.cookie = button.dataset.cookieString;
+                        }, false);
+                    })();
+                </script>}

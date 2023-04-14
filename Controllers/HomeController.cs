@@ -258,7 +258,7 @@ namespace INTEXll.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin")]
+        
         public IActionResult BurialsAdmin(int pageNum = 1)
         {
             int pageSize = 100;
