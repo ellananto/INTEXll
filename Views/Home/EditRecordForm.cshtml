@@ -1,5 +1,5 @@
 ﻿@model Burialmain
-
+<!--Edit Record Form with values prefilled-->
 <center>
     <div class="card text-white bg-dark mb-3" style="max-width: 50rem;">
         <form method="post" asp-action="EditRecordForm">
@@ -142,6 +142,7 @@
                     <div class="col">
                         <label class="form-label">Text: </label>
                         <textarea id="Text" rows="4" asp-for="Text"></textarea><br /><br />
+                        <!--Submit Changes Button-->
                         <input class="btn btn-primary" id="btnSend" type="submit" value="Submit Changes" />
                     </div>
                 </div>

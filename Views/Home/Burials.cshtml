@@ -1,4 +1,5 @@
 ﻿@model BurialsViewModel
+<!--DIsplay table filters to filter by table and then attribute-->
 <body>
     <section id="about" class="about" style="margin-top: -100px; margin-bottom: -20px; width: 100%; background-size: cover;">
         <div class="container mt-5">
@@ -10,6 +11,7 @@
                         <div class="row m-1 p-1" id="title">
                             <div class="col">
                                
+                                <!--Display different table options-->
                                 <div class="text-center">
                                     @if (ViewBag.SelectedType == "BurialMain")
                                     {
@@ -46,6 +48,7 @@
                             <p style="color:white;">The data displayed below are records of various categories of information gathered about a collection of burials that have been uncovered. As you look through the data, you can filter in various ways to look for patterns, and click on each record for more information!</p>
                             <h3 style="color:white;" >Filter by Table</h3>
                             <div id="types" class="col-3">
+                                <!--If a certain table is selected, change the button to filled and display the table selected-->
                                 <div id="types" class="col-3">
                                     <a asp-controller="Home" asp-action="Burials" asp-route-area="BurialMain" asp-route-pageNum="1"
                                        class="btn @(ViewBag.SelectedType == "BurialMain" ? "btn-success" : "btn-outline-light")">
@@ -75,6 +78,7 @@
                                 <br />
                                 <h3 style="color:white;">Filter by Attribute</h3>
                                 <div id="filters">
+                                    <!--If BurialMain is selected, display the following attributes to filter the table by-->
                                     @if (ViewBag.SelectedType == "BurialMain")
                                     {
                                         <form method="post" asp-controller="Home" asp-action="Burials" asp-route-table="BurialMain" asp-route-pageNum="1">
@@ -131,7 +135,7 @@
                                         </form>
                                     }
                                     else if (ViewBag.SelectedType == "BodyAnalysisChart")
-                                    {
+                                    { <!--If Body Analysis Chart is selected, display the following attribute to filter the table by-->
                                         <form method="post" asp-action="Burials" asp-route-table="BodyAnalysisChart" asp-route-pageNum="1">
                                             <div class="container">
                                                 <div class="row">
@@ -145,7 +149,7 @@
                                         </form>
                                     }
                                     else if (ViewBag.SelectedType == "Textile")
-                                    {
+                                    { <!--If Textile is selected, display the following attribute to filter the table by-->
                                         <form method="post" asp-action="Burials" asp-route-table="Textile" asp-route-pageNum="1">
                                             <div class="container">
                                                 <div class="row">
@@ -160,7 +164,7 @@
                                         </form>
                                     }
                                     else if (ViewBag.SelectedType == "TextileFunction")
-                                    {
+                                    { <!--If Textile Functions is selected, display the following attribute to filter the table by-->
                                         <form method="post" asp-action="Burials" asp-route-table="TextileFunction" asp-route-pageNum="1">
                                             <div class="container">
                                                 <div class="row">
@@ -175,7 +179,7 @@
                                         </form>
                                     }
                                     else if (ViewBag.SelectedType == "Structure")
-                                    {
+                                    { <!--If Structure is selected, display the following attribute to filter the table by-->
                                         <form method="post" asp-action="Burials" asp-route-table="Structure" asp-route-pageNum="1">
                                             <div class="container">
                                                 <div class="row">
@@ -190,7 +194,7 @@
                                         </form>
                                     }
                                     else if (ViewBag.SelectedType == "TextileColor")
-                                    {
+                                    { <!--If Textile Colors is selected, display the following attribute to filter the table by-->
                                         <form method="post" asp-action="Burials" asp-route-table="TextileColor" asp-route-pageNum="1">
                                             <div class="container">
                                                 <div class="row">
@@ -208,6 +212,7 @@
                             </div>
                             <div class="col-9">
                                 <div>
+                                    <!--If the table is selected, display the partial view of the table-->
                                     @if (ViewBag.SelectedType == "BurialMain")
                                     {
                                         <partial name="_BurialMainTable" />
@@ -240,6 +245,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!--Pagination-->
                         <div class="text-center">
                             <div page-model="" page-blah="@Model.PageInfo" page-action="Burials" page-class="btn" page-class-normal="btn-outline-light" page-class-selected="btn-primary" page-class-enabled="true" class="btn-group pull-right m-1"></div>
                         </div>

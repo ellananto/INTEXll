@@ -1,4 +1,5 @@
 ﻿@model BurialsViewModel
+    <!--Page to display the burial main records but with admin privileges to add, delete, and edit records-->
     <section id="about" class="about" style="margin-top: -100px; margin-bottom: -20px; width: 100%; background-size: cover;">
         <div class="container mt-5">
             <br />
@@ -6,12 +7,14 @@
                 <div class="col-9">
                     <h1 class="text-center" style="color:white;">Manage Burial Records</h1>
                     <p style="color:white;">The data displayed below are records of various categories of information gathered about a collection of burials that have been uncovered.You can add, remove, and edit records as you see fit.</p>
+                    <!--Add Record-->
                     <div>
                         <a class="btn btn-success" asp-controller="Home" asp-action="AddRecord">Add a Record</a>
                         <br /><br />
                         <table class="table text-white" style="background: rgba(0, 0, 0, 0.4);">
                             <thead>
                                 <tr>
+                                    <!--Table Attributes (only some)-->
                                     <th>Burial ID</th>
                                     <th>Depth</th>
                                     <th>Preservation</th>
@@ -23,6 +26,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <!--Display each record in the table and show the following attributes-->
                                 @foreach (Burialmain b in Model.Burials)
                                 {
                                     <tr>
@@ -34,9 +38,11 @@
                                         <td>@b.Wrapping</td>
                                         <td>@b.Westtohead</td>
                                         <td>@b.Ageatdeath</td>
+                                        <!--Edit Record-->
                                         <td>
                                             <a class="btn btn-primary" asp-controller="Home" asp-action="EditRecordForm" asp-route-recordid="@b.Id">Edit</a>
                                         </td>
+                                        <!--Delete Record-->
                                         <td>
                                             <a class="btn btn-danger" asp-controller="Home" asp-action="DeleteRecordForm" asp-route-deleteid="@b.Id">Delete</a>
                                         </td>
@@ -48,7 +54,7 @@
                     </div>
                 </div>
             </div>
-
+            <!--Pagination-->
             <div page-model="" page-blah="@Model.PageInfo" page-action="BurialsAdmin" page-class="btn" page-class-normal="btn-outline-light" page-class-selected="btn-primary" page-class-enabled="true" class="btn-group pull-right m-1"></div>
         </div>
-     </section>
+    </section>

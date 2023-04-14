@@ -4,6 +4,7 @@
     ViewData["Title"] = "Admin Page";
 }
 
+<!--Display Admin page based on level of usership (admin, user, unauthoried)-->
 @if (signInManager.IsSignedIn(User))
 {
 <div class="text-center">

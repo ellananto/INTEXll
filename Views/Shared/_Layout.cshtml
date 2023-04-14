@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
-
+<!--Shared Layout-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,13 +49,12 @@
     <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
 
         <h1 class="logo me-auto me-lg-0"><a asp-area="" asp-controller="Home" asp-action="Index">Fag El-Gamous</a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
         <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
                 <li><a class="nav-link scrollto active" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                 <li><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="Burials">Public Burials</a></li>
+                <!--Display the Admin Page if you're authenticated'-->
                 @if (SignInManager.IsSignedIn(User))
                 {
                             <li><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="BurialsAdmin">Manage Burials</a></li>
@@ -64,27 +63,28 @@
                 <li><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="Unsupervised">Unsupervised Model</a></li>
                 <partial name="_LoginPartial" />
             </ul>
-        </nav><!-- .navbar -->
+        </nav>
     </div>
 </header>
 <body>
     <main role="main" class="pb-3" style="padding-top: 100px">
-        <partial name="_CookieConsentPartial" />
+        <partial name="_Cookie" />
         @RenderBody()
     </main>
     <br /><br />
     <center>
-    <footer class="border-top footer text-muted">
-        <div class="container" style="">
-            &copy; 2023 - INTEXll - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+        <footer class="border-top footer text-muted">
+            <div class="container" style="">
+                &copy; 2023 - INTEXll - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
     </center>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap2.js"></script>
+    <script src="~/lib/jquery/dist/jquery2.min.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

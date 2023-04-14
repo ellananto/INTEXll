@@ -9,6 +9,7 @@ namespace INTEXll.Components
 {
     public class TypesViewComponents : ViewComponent
     {
+		// bring in instance of the context file
 		private burialContext context { get; set; }
 		public TypesViewComponents (burialContext temp)
 		{
