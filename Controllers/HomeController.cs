@@ -239,7 +239,7 @@ namespace INTEXll.Controllers
             if (data.AgeAtDeath_A == 4) { data.AgeAtDeath_A = 0; data.AgeAtDeath_C = 0; data.AgeAtDeath_I = 0; data.AgeAtDeath_N = 0; }
             using (var client = new HttpClient())
             {
-                var uri = new Uri("https://localhost:44339/score");
+                var uri = new Uri("https://wayofthewaterbuffalo.org/score");
 
                 var json = JsonConvert.SerializeObject(data);
 
@@ -258,7 +258,7 @@ namespace INTEXll.Controllers
             }
         }
 
-        
+        [Authorize(Roles = "Admin")]
         public IActionResult BurialsAdmin(int pageNum = 1)
         {
             int pageSize = 100;

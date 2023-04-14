@@ -43,6 +43,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 </head>
 <header id="header" class="fixed-top d-flex align-items-center" style="margin-top: -40px">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
@@ -71,16 +72,19 @@
         <partial name="_CookieConsentPartial" />
         @RenderBody()
     </main>
-
+    <br /><br />
+    <center>
     <footer class="border-top footer text-muted">
-        <div class="container">
+        <div class="container" style="">
             &copy; 2023 - INTEXll - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+    </center>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap2.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

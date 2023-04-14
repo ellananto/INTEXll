@@ -19,11 +19,21 @@
         <a href="https://gdpr.eu/cookies/" class="cookie-consent-learn-more" target="_blank">Learn More</a>
     </div>
 </div>
-                <script>
-                    (function () {
-                        var button = document.querySelector("#cookieConsent button[data-cookie-string]");
-                        button.addEventListener("click", function (event) {
-                            document.cookie = button.dataset.cookieString;
-                        }, false);
-                    })();
-                </script>}
+<script>
+    (function () {
+        var button = document.querySelector("#cookieConsent button[data-cookie-string]");
+        button.addEventListener("click", function (event) {
+            document.cookie = button.dataset.cookieString;
+        }, false);
+    })();
+</script>
+<script>
+    (function () {
+        var button = document.querySelector("#cookieConsent button.close");
+        var popup = document.querySelector("#cookieConsent");
+        button.addEventListener("click", function (event) {
+            popup.style.display = "none";
+        }, false);
+    })();
+</script>
+}

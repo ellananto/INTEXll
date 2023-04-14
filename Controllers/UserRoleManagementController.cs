@@ -12,7 +12,7 @@ using INTEXll.Models.RoleModel;
 namespace INTEXll.Controllers
 {
     // Setting up Admin Authorization to access certain views
-    
+    [Authorize(Roles = "Admin")]
     public class UserRoleManagementController : Controller
     {
         private readonly UserManager<IdentityUser> userManager;
